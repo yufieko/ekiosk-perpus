@@ -1,0 +1,8 @@
+*.DS_Store
+.idea
+/nbproject/
+/user_guide/
+TODO
+TODO.txt
+*.zip
+test.html
