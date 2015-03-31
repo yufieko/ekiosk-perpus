@@ -1,4 +1,4 @@
-# ekios-perpus
+# ekiosk-perpus
 projek e-kios perpustakaan untuk mata kuliah workshop aplikasi teknologi informasi
 
 # memakai
