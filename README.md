@@ -3,4 +3,4 @@ projek e-kios perpustakaan untuk mata kuliah workshop aplikasi teknologi informa
 
 # memakai
 - PHP 5.x
-- CodeIgniter 3.0 RC3
+- CodeIgniter 3.0-stable
