@@ -34,7 +34,7 @@ class User_model extends CI_Model {
         // konfigurasi default
         $this->settings = array(
             //Website Title. This is used when sending emails            
-            "website_title" => 'P3M PENS',
+            "website_title" => 'E-Kiosk Perpustakaan',
             //Automatically sign user in after registration
             "auto_sign_in" => FALSE,
             //send verification email upon registration
@@ -52,7 +52,7 @@ class User_model extends CI_Model {
             //When should the password reset email expire? in seconds
             "password_reset_date_limit" => 60 * 3, #Default = 2 hours
             //This is the email used to send emails through the website
-            "webmaster_email" => 'no_reply@p3m.pens.ac.id',
+            "webmaster_email" => 'no_reply@eperpus.yu.dev',
             //Email templates. NOTE: templates must be in the application/views folder
             //and must end with .php extension
             "email_templates" => array(

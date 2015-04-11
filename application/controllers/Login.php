@@ -9,13 +9,13 @@ class Login extends CI_Controller {
 	
 	public function index() {
 		if(!$this->user_model->is_logged_in()){
-            if($this->session->userdata('p3m_pesan_error')) {
-                $data['error'] = $this->session->userdata('p3m_pesan_error');
-                $this->session->unset_userdata('p3m_pesan_error');
+            if($this->session->userdata('perpus_pesan_error')) {
+                $data['error'] = $this->session->userdata('perpus_pesan_error');
+                $this->session->unset_userdata('perpus_pesan_error');
                 $this->load->view('Backend/login_view',$data);
-            } else if($this->session->userdata('p3m_pesan_sukses')) {
-                $data['sukses'] = $this->session->userdata('p3m_pesan_sukses');
-                $this->session->unset_userdata('p3m_pesan_sukses');
+            } else if($this->session->userdata('perpus_pesan_sukses')) {
+                $data['sukses'] = $this->session->userdata('perpus_pesan_sukses');
+                $this->session->unset_userdata('perpus_pesan_sukses');
                 $this->load->view('Backend/login_view',$data);
             } else {
                 $this->load->view('Backend/login_view');
@@ -26,13 +26,13 @@ class Login extends CI_Controller {
 	}
 
 	public function lupa() {
-		if($this->session->userdata('p3m_pesan_error')) {
-            $data['error'] = $this->session->userdata('p3m_pesan_error');
-            $this->session->unset_userdata('p3m_pesan_error');
+		if($this->session->userdata('perpus_pesan_error')) {
+            $data['error'] = $this->session->userdata('perpus_pesan_error');
+            $this->session->unset_userdata('perpus_pesan_error');
             $this->load->view('Backend/lupa_view',$data);
-        } else if($this->session->userdata('p3m_pesan_sukses')) {
-        	$data['sukses'] = $this->session->userdata('p3m_pesan_sukses');
-            $this->session->unset_userdata('p3m_pesan_sukses');
+        } else if($this->session->userdata('perpus_pesan_sukses')) {
+        	$data['sukses'] = $this->session->userdata('perpus_pesan_sukses');
+            $this->session->unset_userdata('perpus_pesan_sukses');
             $this->load->view('Backend/lupa_view',$data);
         } else {
             $this->load->view('Backend/lupa_view');
@@ -54,7 +54,7 @@ class Login extends CI_Controller {
             $flag = $this->user_model->login($username, $password, $ingat);
 
             if(!$flag) {
-            	$this->session->set_userdata('p3m_pesan_error', $this->user_model->error_messages());
+            	$this->session->set_userdata('perpus_pesan_error', $this->user_model->error_messages());
             	redirect('login');
             } else {
                 $urlke = $this->session->userdata('p3m_urlke') == NULL ? 'dashboard' : $this->session->userdata('p3m_urlke');
@@ -64,7 +64,7 @@ class Login extends CI_Controller {
             //redirect('daftar');
 
         } else {
-        	$this->session->set_userdata('p3m_pesan_error', validation_errors());
+        	$this->session->set_userdata('perpus_pesan_error', validation_errors());
             redirect('login');
         	// $this->load->view('Backend/daftar_view');
         }
@@ -84,16 +84,16 @@ class Login extends CI_Controller {
 
             // pengecekan flag
             if(!$flag) {
-            	$this->session->set_userdata('p3m_pesan_error', $this->user_model->error_messages());
+            	$this->session->set_userdata('perpus_pesan_error', $this->user_model->error_messages());
             	redirect('login/lupa');
             } else {
-            	$this->session->set_userdata('p3m_pesan_sukses', "Link Ganti Password telah dikirim ke email Anda");
+            	$this->session->set_userdata('perpus_pesan_sukses', "Link Ganti Password telah dikirim ke email Anda");
             	redirect('login/lupa');
             }
             //redirect('daftar');
 
         } else {
-        	$this->session->set_userdata('p3m_pesan_error', validation_errors());
+        	$this->session->set_userdata('perpus_pesan_error', validation_errors());
             redirect('login/lupa');
         }
     }

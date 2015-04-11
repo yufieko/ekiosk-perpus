@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>P3M PENS | Login</title>
+    <title>Login | E-kiosk Perpus Backend</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="<?=base_url();?>public/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -46,7 +46,7 @@
 <body class="login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="<?=base_url();?>"><b>P3M</b>PENS</a>
+            <a href="<?=base_url();?>"><b>Ekiosk</b>Perpus</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -89,7 +89,7 @@
         </div>
         <!-- /.login-box-body -->
         <div style="margin: 5px auto; opacity: 0.5; text-align: center;">
-            Copyright &copy; 2015 - P3M PENS<br><b>Best in Chrome Browser. <i>{elapsed_time} detik</i></b>
+            Copyright &copy; 2015 - E-Kiosk Perpustakaan<br><b>Best in Chrome Browser. <i>{elapsed_time} detik</i></b>
         </div>
         <!-- /.login-box-footer -->
     </div>
