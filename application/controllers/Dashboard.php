@@ -3,73 +3,73 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends MY_Controller {
 	public $datah = array();
+	public $data = array();
 
 	public function __construct() {
         parent::__construct();
-        // generate menu list
+        // load model
+        $this->load->model('hak_model');
+        $this->load->model('web_model');
+
+        // data header
 		$this->datah['menu'] = $this->user_model->get_menu($this->user_model->get_roleid());
 		$this->datah['title'] = ucfirst( $this->router->method == 'index' ? $this->router->class : $this->router->method );
 		$this->datah['aktif'] = array(
 			'parent' => '#parent-' . ( $this->router->method == 'index' ? $this->router->class : $this->router->method ),
 			'child' => '');
+		$this->datah['menudesk'] = $this->hak_model->select(array('akses_nama' => strtolower($this->datah['title']) ), 1);
+
+		// data content
+		$this->data['web'] = $this->web_model->select();
     }
 
 	public function index() {
 		$this->load->view('Backend/header_view', $this->datah);
-		$this->load->view('Backend/dashboard_view');
+		$this->load->view('Backend/dashboard_view', $this->data);
 	}
 
 	public function log() {
 		$this->load->view('Backend/header_view', $this->datah);
-		$this->load->view('Backend/dashboard_view');
+		$this->load->view('Backend/dashboard_view', $this->data);
 	}
 
 	public function notifikasi() {
 		$this->load->view('Backend/header_view', $this->datah);
-		$this->load->view('Backend/dashboard_view');
+		$this->load->view('Backend/dashboard_view', $this->data);
 	}
 
-	public function laporan() {
+	public function buku() {
 		$this->load->view('Backend/header_view', $this->datah);
-		$this->load->view('Backend/dashboard_view');
+		$this->load->view('Backend/buku_view', $this->data);
 	}
 
-	public function reminder() {
+	public function koran() {
 		$this->load->view('Backend/header_view', $this->datah);
-		$this->load->view('Backend/dashboard_view');
+		$this->load->view('Backend/dashboard_view', $this->data);
 	}
 
 	public function berita() {
 		$this->load->view('Backend/header_view', $this->datah);
-		$this->load->view('Backend/dashboard_view');
+		$this->load->view('Backend/dashboard_view', $this->data);
 	}
 
-	public function agenda() {
+	public function frontend() {
 		$this->load->view('Backend/header_view', $this->datah);
-		$this->load->view('Backend/dashboard_view');
-	}
-
-	public function penelitian($param) {
-		$this->datah['aktif']['child'] = '#child-' . $param;
-		//echo "<script>alert('" . $param . "')</script>";
-		$this->load->view('Backend/header_view', $this->datah);
-		$this->load->view('Backend/dashboard_view');
+		$this->load->view('Backend/dashboard_view', $this->data);
 	}
 
 	public function manajemen($param) {
 		$this->datah['aktif']['child'] = '#child-' . $param;
-		$this->load->view('Backend/header_view', $this->datah);
-		$this->load->view('Backend/dashboard_view');
-	}
+		$this->datah['title'] = ucfirst( $param );
+		$this->datah['menudesk'] = $this->hak_model->select(array('akses_nama' => strtolower($param) ), 1);
 
-	public function berkas() {
 		$this->load->view('Backend/header_view', $this->datah);
-		$this->load->view('Backend/dashboard_view');
+		$this->load->view('Backend/dashboard_view', $this->data);
 	}
 
 	public function logout() {
 		$this->user_model->logout();
-		$this->session->set_userdata('p3m_pesan_sukses', "Session Anda berhasil diakhiri");
+		$this->session->set_userdata('perpus_pesan_sukses', "Session Anda berhasil diakhiri");
 		redirect('login');
 	}
 

@@ -57,7 +57,7 @@ class Login extends CI_Controller {
             	$this->session->set_userdata('perpus_pesan_error', $this->user_model->error_messages());
             	redirect('login');
             } else {
-                $urlke = $this->session->userdata('p3m_urlke') == NULL ? 'dashboard' : $this->session->userdata('p3m_urlke');
+                $urlke = $this->session->userdata('perpus_urlke') == NULL ? 'dashboard' : $this->session->userdata('perpus_urlke');
             	//echo "<script>alert('" . $urlke . "');</script>";
                 redirect($urlke);
             }

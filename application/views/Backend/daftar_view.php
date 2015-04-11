@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>P3M PENS | Buat Akun</title>
+    <title>Buat Akun | E-kiosk Perpus Backend</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="<?=base_url();?>public/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -26,7 +26,7 @@
 <body class="register-page">
     <div class="register-box">
         <div class="register-logo">
-            <a href="<?=base_url();?>"><b>P3M</b>PENS</a>
+            <a href="<?=base_url();?>"><b>Ekiosk</b>Perpus</a>
         </div>
         <!-- /.register-logo -->
         <div class="register-box-body">

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>P3M PENS | Lupa Password</title>
+    <title>Lupa Password | E-kiosk Perpus Backend</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="<?=base_url();?>public/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -44,7 +44,7 @@
 <body class="login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="<?=base_url();?>"><b>P3M</b>PENS</a>
+            <a href="<?=base_url();?>"><b>Ekiosk</b>Perpus</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">

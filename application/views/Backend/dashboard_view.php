@@ -1,17 +1,3 @@
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            Dashboard
-            <small>Version 2.0</small>
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
-          </ol>
-        </section>
-
         <!-- Main content -->
         <section class="content">
           <!-- Info boxes -->
@@ -664,9 +650,9 @@
 
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 2.0
+          <b>Versi</b> Beta 0.2
         </div>
-        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+        <strong><?=$web->web_footer;?>.</strong> All rights reserved.
       </footer>
 
     </div><!-- ./wrapper -->
