@@ -84,6 +84,13 @@ $.AdminLTE.options = {
     //The button to open and close the chat contacts pane
     contactToggleSelector: '[data-widget="chat-pane-toggle"]'
   },
+  //Direct New Data plugin options
+  newData: {
+    //Enable direct new data by default
+    enable: true,
+    //The button to open and close the new data form pane
+    contactToggleSelector: '[data-widget="newdata-pane-toggle"]'
+  },
   //Define the set of colors to use globally around the website
   colors: {
     lightBlue: "#3c8dbc",
@@ -168,6 +175,14 @@ $(function () {
     $(o.directChat.contactToggleSelector).click(function () {
       var box = $(this).parents('.direct-chat').first();
       box.toggleClass('direct-chat-contacts-open');
+    });
+  }
+
+  //Activate new data widget
+  if (o.newData.enable) {
+    $(o.newData.contactToggleSelector).click(function () {
+      var box = $(this).parents('.direct-newdata').first();
+      box.toggleClass('direct-newdata-open');
     });
   }
 
