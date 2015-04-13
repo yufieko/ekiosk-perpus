@@ -1435,7 +1435,7 @@ a:hover, a:active, a:focus {
 .info-box-number {
 	display: block;
 	font-weight: bold;
-	font-size: 18px
+	font-size: 30px; /*18px*/
 }
 .progress-description, .info-box-text {
 	display: block;
