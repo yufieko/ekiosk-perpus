@@ -20,8 +20,8 @@ class Buku extends MY_Controller {
 
         $select = "b.buku_id,b.buku_judul,b.buku_penulis,j.jenis_teks,b.buku_tahun,"
         		. "b.buku_jumlah,b.buku_pinjam,REPLACE(REPLACE(`b`.`buku_status`,'0','Tidak Ada'),'1','Ada') AS Bstatus";
-        $opsi = '<button class="btn btn-xs btn-flat btn-primary" data-id="$1" title="Edit Data"><i class="fa fa-pencil"></i></button>'
-        		. ' <button class="btn btn-xs btn-flat btn-danger" data-id="$1" title="Hapus Data"><i class="fa fa-close"></i></button>';
+        $opsi = '<button class="btn btn-xs btn-flat btn-primary" data-toggle="modal" data-target="#modal-edit" data-id="'.sha1('$1').'" data-title="Buku" title="Edit Data"><i class="fa fa-pencil"></i></button>'
+        		. ' <button class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#modal-hapus" data-id="'.sha1('$1').'" data-title="Buku" title="Hapus Data"><i class="fa fa-close"></i></button>';
         $this->datatables->select($select)
         	->add_column('Bopsi', $opsi, 'buku_id')
         	->from('tb_buku b')

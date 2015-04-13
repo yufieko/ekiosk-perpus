@@ -139,6 +139,10 @@
               <div class="box box-danger">
                 <div class="box-header with-border">
                   <h3 class="box-title">Daftar Buku</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-sm btn-info" id="btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
+                    <button class="btn btn-sm btn-success" id="btn-tambah-buku"><i class="fa fa-plus"></i> Tambah Buku Baru</button>
+                  </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <table id="tblbuku" class="table table-bordered table-striped display nowrap" cellspacing="0" width="100%">
@@ -192,13 +196,77 @@
 
     </div><!-- ./wrapper -->
 
+    <!-- Modal Hapus -->
+    <div class="modal modal-danger fade" id="modal-hapus" data-backdrop="static">
+      <div class="modal-dialog" style="width: 350px;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title"><i class="fa fa-book"></i> Hapus Data </h4>
+          </div>
+          <div class="modal-body">
+            <div class="box-body table-responsive">
+              <span id="form-pesan-hapus"></span>
+              <?php echo form_open('buku/hapus', 'id="form-hapus"') ?>
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <input type="hidden" id="hapus-id" name="hapus-id" />
+                    <input type="hidden" id="hapus-judul" name="hapus-judul" />
+                    <p>Apakah Anda yakin ingin menghapus Data Buku berikut ?</p>
+                    <div class="callout callout-danger">
+                      <p>Judul : <span class="hapus-judul"> </span></p>
+                      <p>Penulis : <span class="hapus-penulis"> </span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <?php echo form_close(); ?>
+            </div><!-- /.box-body -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
+            <button id="btn-hapus" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Iya, Hapus</button>
+          </div>
+        </div>
+        <!-- Loading (remove the following to stop the loading)-->
+        <div class="overlay" style="display:none">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
+        <!-- end loading -->
+      </div>
+    </div>
+
     <!-- Perpus App -->
     <script src="<?=base_url('public/dist/js/app.min.js');?>" type="text/javascript"></script>
     <script src="<?=base_url('public/dist/js/jQuery.dtplugin.js');?>" type="text/javascript"></script>
     <script src="<?=base_url('public/dist/js/zjs.utils.js');?>" type="text/javascript"></script>
     <!-- page script -->
     <script type="text/javascript">
-      $(function () {
+      $(document).ready(function() {
+        $('#btn-hapus').click(function(){
+            $('#modal-hapus').modal('show');
+        });
+
+        $('#modal-hapus').on('show.bs.modal', function (e) {
+            var id = $(e.relatedTarget).attr('data-id');
+            var title = $(e.relatedTarget).attr('data-title');
+            $(this).find('#hapus-id').text(id);
+            $(this).find('#hapus-judul').text(title);
+            $(this).find('.hapus-judul').text(title);
+            $(this).find('.hapus-penulis').text(title);
+        });
+
+        $('#btn-hapus').click(function(){
+            //$('#form-hapus').submit();
+            $('#btn-hapus').addClass('disabled');
+            
+        });
+
+        $('#btn-refresh').click(function(){
+            $('#tblbuku').dataTable().fnReloadAjax();
+        });
+
         $("#tblbuku").dataTable( {
             "processing": true,
             "serverSide": true,
