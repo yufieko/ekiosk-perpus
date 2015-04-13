@@ -218,7 +218,7 @@
         <section class="content-header">
           <h1>
             <?=$title;?>
-            <small><?php foreach ($menudesk->result() as $key) { echo $key->akses_deskripsi; }; ?></small>
+            <small><?php foreach ($menudesk as $key) { echo $key->akses_deskripsi; }; ?></small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

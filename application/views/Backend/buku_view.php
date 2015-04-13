@@ -4,19 +4,19 @@
           <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-book"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">CPU Traffic</span>
-                  <span class="info-box-number">90<small>%</small></span>
+                  <span class="info-box-text">Total Buku</span>
+                  <span class="info-box-number">0</span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div><!-- /.col -->
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+                <span class="info-box-icon bg-red"><i class="ion ion-log-out"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">Likes</span>
-                  <span class="info-box-number">41,410</span>
+                  <span class="info-box-text">Dipinjam</span>
+                  <span class="info-box-number">0</span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div><!-- /.col -->
@@ -26,19 +26,19 @@
 
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+                <span class="info-box-icon bg-green"><i class="ion ion-pin"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">Sales</span>
-                  <span class="info-box-number">760</span>
+                  <span class="info-box-text">Belum Dipinjam</span>
+                  <span class="info-box-number">0</span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div><!-- /.col -->
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-bookmarks"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">New Members</span>
-                  <span class="info-box-number">2,000</span>
+                  <span class="info-box-text">Jenis</span>
+                  <span class="info-box-number">0</span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div><!-- /.col -->
@@ -155,100 +155,7 @@
                         <th>Opsi</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 4.0</td>
-                        <td>Win 95+</td>
-                        <td> 4</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 5.0</td>
-                        <td>Win 95+</td>
-                        <td>5</td>
-                        <td>C</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 5.5</td>
-                        <td>Win 95+</td>
-                        <td>5.5</td>
-                        <td>A</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 6</td>
-                        <td>Win 98+</td>
-                        <td>6</td>
-                        <td>A</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet Explorer 7</td>
-                        <td>Win XP SP2+</td>
-                        <td>7</td>
-                        <td>A</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>AOL browser (AOL desktop)</td>
-                        <td>Win XP</td>
-                        <td>6</td>
-                        <td>A</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Firefox 1.0</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.7</td>
-                        <td>A</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                      </tr>
-                      <tr>
-                        <td>Gecko</td>
-                        <td>Firefox 1.5</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td>1.8</td>
-                        <td>A</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                        <td>X</td>
-                      </tr>
-                    </tbody>
+                    <tbody></tbody>
                     <tfoot>
                       <tr>
                         <th>ID</th>
@@ -285,23 +192,31 @@
 
     </div><!-- ./wrapper -->
 
-    <!-- AdminLTE App -->
+    <!-- Perpus App -->
     <script src="<?=base_url('public/dist/js/app.min.js');?>" type="text/javascript"></script>
+    <script src="<?=base_url('public/dist/js/jQuery.dtplugin.js');?>" type="text/javascript"></script>
+    <script src="<?=base_url('public/dist/js/zjs.utils.js');?>" type="text/javascript"></script>
     <!-- page script -->
     <script type="text/javascript">
       $(function () {
         $("#tblbuku").dataTable( {
-            responsive: {
-                details: {
-                    type: 'column'
-                }
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "<?=site_url('buku/getbuku');?>",
+                "type": "POST"
             },
-            columnDefs: [ {
-                className: 'control',
-                orderable: false,
-                targets:   0
-            } ],
-            order: [ 1, 'asc' ]
+            "columns": [
+              { "data": "buku_id" },
+              { "data": "buku_judul" },
+              { "data": "buku_penulis" },
+              { "data": "jenis_teks" },
+              { "data": "buku_tahun" },
+              { "data": "buku_jumlah" },
+              { "data": "buku_pinjam" },
+              { "data": "Bstatus" },
+              { "data": "Bopsi", "searchable": false, "sortable": false },
+            ],
         } );
         $('#tbljenis').dataTable({
           "bPaginate": true,

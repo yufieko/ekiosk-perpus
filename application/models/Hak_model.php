@@ -8,12 +8,12 @@ class Hak_model extends CI_Model {
             $this->db->from('tb_hakakses');
             $this->db->where($parameter);
             $query = $this->db->get();
-            return (count($query->row_array()) > 0 ? $query->row()->Total : 0);
+            return ($query->num_rows() > 0 ? $query->row()->Total : 0);
         }else{
             $this->db->select('count(*) AS Total');
             $this->db->from('tb_hakakses');
             $query = $this->db->get();
-            return (count($query->row_array()) > 0 ? $query->row()->Total : 0);
+            return ($query->num_rows() > 0 ? $query->row()->Total : 0);
         }
     }
 
@@ -37,7 +37,7 @@ class Hak_model extends CI_Model {
         $this->db->where($data);
         $this->db->limit($no);
         $query = $this->db->get();
-        return (count($query->row_array()) > 0 ? $query : NULL);
+        return ($query->num_rows() > 0 ? $query->result() : NULL);
     }
 }
 
