@@ -32,10 +32,10 @@ class Buku extends MY_Controller {
 
     public function get_databox() {
         // data buat box
-        $data['boxtotal'] = $this->buku_model->get_total();
-        $data['boxpinjam'] = $this->buku_model->get_total(array("post_status" => 0));
-        $data['boxbpinjam'] = $this->buku_model->get_total(array("post_status" => 1));
-        $data['boxjenis'] = $this->buku_model->get_like();
+        $data['boxtotal'] = $this->buku_model->get_totalbuku();
+        $data['boxpinjam'] = $this->buku_model->get_pinjam();
+        $data['boxbpinjam'] = $this->buku_model->get_bpinjam();
+        $data['boxjenis'] = $this->buku_model->get_total('tb_jenis');
 
         echo json_encode($data);
     }

@@ -18,6 +18,27 @@ class Buku_model extends CI_Model {
         }
     }
 
+    function get_totalbuku() {
+        $this->db->select('SUM(buku_jumlah) AS Jumlah')
+            ->from('tb_buku');
+        $query = $this->db->get();
+        return ($query->num_rows() > 0 ? $query->row()->Jumlah : 0);
+    }
+
+    function get_pinjam() {
+        $this->db->select('SUM(buku_pinjam) AS Pinjam')
+            ->from('tb_buku');
+        $query = $this->db->get();
+        return ($query->num_rows() > 0 ? $query->row()->Pinjam : 0);
+    }
+
+    function get_bpinjam() {
+        $this->db->select('SUM(buku_jumlah) - SUM(buku_pinjam) AS Pinjam')
+            ->from('tb_buku');
+        $query = $this->db->get();
+        return ($query->num_rows() > 0 ? $query->row()->Pinjam : 0);
+    }
+
     function insert($data) {
         $this->db->insert('tb_buku', $data);
     }

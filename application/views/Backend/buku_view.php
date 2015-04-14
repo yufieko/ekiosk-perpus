@@ -7,7 +7,7 @@
                 <span class="info-box-icon bg-aqua"><i class="ion ion-ios-book"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Total Buku</span>
-                  <span class="info-box-number">0</span>
+                  <span class="info-box-number" id="boxtotal">0</span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div><!-- /.col -->
@@ -16,7 +16,7 @@
                 <span class="info-box-icon bg-red"><i class="ion ion-log-out"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Dipinjam</span>
-                  <span class="info-box-number">0</span>
+                  <span class="info-box-number" id="boxpinjam">0</span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div><!-- /.col -->
@@ -29,7 +29,7 @@
                 <span class="info-box-icon bg-green"><i class="ion ion-pin"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Belum Dipinjam</span>
-                  <span class="info-box-number">0</span>
+                  <span class="info-box-number" id="boxbpinjam">0</span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div><!-- /.col -->
@@ -38,7 +38,7 @@
                 <span class="info-box-icon bg-yellow"><i class="ion ion-ios-bookmarks"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Jenis</span>
-                  <span class="info-box-number">0</span>
+                  <span class="info-box-number" id="boxjenis">0</span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div><!-- /.col -->
@@ -182,6 +182,115 @@
 
     </div><!-- ./wrapper -->
 
+    <!-- Modal Tambah  -->
+    <div class="modal modal-primary fade" id="modal-tambah-buku" data-backdrop="static">
+      <div class="modal-dialog" style="width: 50%;">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title"><i class="fa fa-book"></i> Tambah Buku Baru </h4>
+          </div>
+          <div class="modal-body">
+            <div class="box-body table-responsive">
+              <span id="form-pesan-tambah"></span>
+              <?php echo form_open('buku/tambah', 'id="form-tambah-buku"') ?>
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Judul:</span>
+                        <input type="text" class="form-control" id="tambah-judul" name="tambah-judul" placeholder="Judul Buku" />
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Penulis:</span>
+                        <input type="text" class="form-control" id="tambah-penulis" name="tambah-penulis" placeholder="Penulis Buku" />
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <textarea name="tambah-teks" id="tambah-teks" class="form-control textarea" placeholder="Deskripsi singkat" style="height: 100px;overflow:auto;resize:none"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Penerbit:</span>
+                        <input type="text" class="form-control" id="tambah-tag" name="tambah-tag" placeholder="Tag, Jika lebih dari 1 pisahkan dengan koma" />
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Buku Masuk:</span>
+                        <input type="text" class="form-control" id="tambah-time" name="tambah-time" placeholder="Waktu Artikel" value="<?=date("Y-m-d H:i:s",now());?>" />
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Status:</span>
+                        <select class="form-control" id="tambah-status" name="tambah-status">
+                            <option value="1">Publish</option>
+                            <option value="0">Draft</option>
+                        </select>
+                      </div><!-- /.input group -->
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Jenis:</span>
+                        <select class="form-control" id="tambah-status" name="tambah-status">
+                            <option value="1">Publish</option>
+                            <option value="0">Draft</option>
+                        </select>
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Koleksi:</span>
+                        <select class="form-control" id="tambah-status" name="tambah-status">
+                            <option value="1">Publish</option>
+                            <option value="0">Draft</option>
+                        </select>
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Tahun:</span>
+                        <input type="text" class="form-control" id="tambah-time" name="tambah-time" placeholder="Waktu Artikel" value="<?=date("Y",now());?>" />
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Letak:</span>
+                        <input type="text" class="form-control" id="tambah-tag" name="tambah-tag" placeholder="Tag, Jika lebih dari 1 pisahkan dengan koma" />
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Jumlah Buku:</span>
+                        <input type="text" class="form-control" id="tambah-tag" name="tambah-tag" placeholder="Tag, Jika lebih dari 1 pisahkan dengan koma" />
+                      </div><!-- /.input group -->
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <?php echo form_close(); ?>
+            </div><!-- /.box-body -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
+            <button id="btn-simpan" type="button" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+          </div>
+        </div>
+        <!-- Loading (remove the following to stop the loading)-->
+        <div class="overlay" style="display:none">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
+        <!-- end loading -->
+      </div>
+    </div>
+
     <!-- Modal Hapus -->
     <div class="modal modal-danger fade" id="modal-hapus" data-backdrop="static">
       <div class="modal-dialog" style="width: 350px;">
@@ -230,14 +339,28 @@
     <!-- page script -->
     <script type="text/javascript">
       function refresh_jumlah(){
-        $.getJSON('<?=site_url(buku/get_databox)?>', function(obj) {
+        $.getJSON("<?=site_url('buku/get_databox')?>", function(obj) {
             $("#boxtotal").html(obj.boxtotal);
             $("#boxpinjam").html(obj.boxpinjam);
             $("#boxbpinjam").html(obj.boxbpinjam);
             $("#boxjenis").html(obj.boxjenis);
         });
       }
+
       $(document).ready(function() {
+        refresh_jumlah();
+        $('#btn-refresh').click(function(){
+            refresh_jumlah();
+            $('#tblbuku').dataTable().fnReloadAjax();
+            $('#tbljenis').dataTable().fnReloadAjax();
+            $('#tblkoleksi').dataTable().fnReloadAjax();
+        });
+
+        $('#btn-tambah-buku').click(function(){
+            $('#form-pesan-tambah').html('');
+            $('#modal-tambah-buku').modal('show');
+        });
+
         $('#btn-hapus').click(function(){
             $('#modal-hapus').modal('show');
         });
@@ -255,12 +378,6 @@
             //$('#form-hapus').submit();
             $('#btn-hapus').addClass('disabled');
             
-        });
-
-        $('#btn-refresh').click(function(){
-            $('#tblbuku').dataTable().fnReloadAjax();
-            $('#tbljenis').dataTable().fnReloadAjax();
-            $('#tblkoleksi').dataTable().fnReloadAjax();
         });
 
         $("#tblbuku").dataTable({
