@@ -3,16 +3,16 @@
 class Buku_model extends CI_Model {
 //class Buku_model extends CI_Model implements DatatableModel {
 
-	function get_total($parameter) {
+	function get_total($from = 'tb_buku', $parameter = array()) {
         if(!empty($parameter)){
             $this->db->select('count(*) AS Total');
-            $this->db->from('tb_buku');
+            $this->db->from($from);
             $this->db->where($parameter);
             $query = $this->db->get();
             return ($query->num_rows() > 0 ? $query->row()->Total : 0);
         }else{
             $this->db->select('count(*) AS Total');
-            $this->db->from('tb_buku');
+            $this->db->from($from);
             $query = $this->db->get();
             return ($query->num_rows() > 0 ? $query->row()->Total : 0);
         }
