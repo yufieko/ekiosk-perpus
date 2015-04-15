@@ -1,5 +1,5 @@
-/*! TableTools 2.2.4
- * 2009-2015 SpryMedia Ltd - datatables.net/license
+/*! TableTools 2.2.3
+ * 2009-2014 SpryMedia Ltd - datatables.net/license
  *
  * ZeroClipboard 1.0.4
  * Author: Joseph Huckaby - MIT licensed
@@ -8,11 +8,11 @@
 /**
  * @summary     TableTools
  * @description Tools and buttons for DataTables
- * @version     2.2.4
+ * @version     2.2.3
  * @file        dataTables.tableTools.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
- * @copyright   Copyright 2009-2015 SpryMedia Ltd.
+ * @copyright   Copyright 2009-2014 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
@@ -434,7 +434,7 @@ ZeroClipboard_TableTools.Client.prototype = {
 window.ZeroClipboard_TableTools = ZeroClipboard_TableTools;
 //include TableTools.js
 /* TableTools
- * 2009-2015 SpryMedia Ltd - datatables.net/license
+ * 2009-2014 SpryMedia Ltd - datatables.net/license
  */
 
 /*globals TableTools,ZeroClipboard_TableTools*/
@@ -1157,11 +1157,7 @@ TableTools.prototype = {
 		this.s.dt.aoDestroyCallback.push( {
 			"sName": "TableTools",
 			"fn": function () {
-				$(that.s.dt.nTBody)
-					.off( 'click.DTTT_Select', that.s.custom.sRowSelector )
-					.off( 'mousedown.DTTT_Select', 'tr' )
-					.off( 'mouseup.DTTT_Select', 'tr' );
-
+				$(that.s.dt.nTBody).off( 'click.DTTT_Select', 'tr' );
 				$(that.dom.container).empty();
 
 				// Remove the instance
@@ -1809,10 +1805,6 @@ TableTools.prototype = {
 
 			return out;
 		}
-		else if ( typeof src === 'number' )
-		{
-			out.push(this.s.dt.aoData[src]);
-		}
 		else
 		{
 			// A single aoData point
@@ -1985,13 +1977,6 @@ TableTools.prototype = {
 			}
 			that._fnCollectionHide( nButton, oConfig );
 		} );
-
-		if ( oConfig.fnSelect !== null )
-		{
-			TableTools._fnEventListen( this, 'select', function (n) {
-				oConfig.fnSelect.call( that, nButton, oConfig, n );
-			} );
-		}
 
 		this._fnFlashGlue( flash, nButton, oConfig.sToolTip );
 	},
@@ -3079,7 +3064,7 @@ TableTools.classes_themeroller = {
  * @namespace TableTools default settings for initialisation
  */
 TableTools.DEFAULTS = {
-	"sSwfPath":        "/public/plugins/datatables/swf/copy_csv_xls_pdf.swf",
+	"sSwfPath":        "swf/copy_csv_xls_pdf.swf",
 	"sRowSelect":      "none",
 	"sRowSelector":    "tr",
 	"sSelectedClass":  null,
@@ -3119,7 +3104,7 @@ TableTools.prototype.CLASS = "TableTools";
  *  @type	  String
  *  @default   See code
  */
-TableTools.version = "2.2.4";
+TableTools.version = "2.2.3";
 
 
 

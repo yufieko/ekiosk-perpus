@@ -25,7 +25,8 @@ class Buku extends MY_Controller {
         	->add_column('Bopsi', $opsi, 'buku_id')
         	->from('tb_buku b')
         	->join('tb_jenis j', 'b.jenis_id = j.jenis_id')
-        	->join('tb_koleksi k', 'b.koleksi_id = k.koleksi_id');
+        	->join('tb_koleksi k', 'b.koleksi_id = k.koleksi_id')
+            ->unset_column('Bopsi');
  
         echo $this->datatables->generate();
 	}

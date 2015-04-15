@@ -46,7 +46,7 @@
 
           <div class="row">
             <div class="col-xs-12">
-              <div class="box box-danger">
+              <div id="box-tblbuku" class="box box-danger">
                 <div class="box-header with-border">
                   <h3 class="box-title">Daftar Buku</h3>
                   <div class="box-tools pull-right">
@@ -105,7 +105,7 @@
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <table id="tbljenis" class="table table-bordered table-hover">
+                  <table id="tbljenis" class="table table-bordered table-hover dt-responsive" cellspacing="0" width="100%">
                     <thead>
                       <tr>
                         <th>ID</th>
@@ -134,7 +134,7 @@
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <table id="tblkoleksi" class="table table-bordered table-hover">
+                  <table id="tblkoleksi" class="table table-bordered table-hover dt-responsive" cellspacing="0" width="100%">
                     <thead>
                       <tr>
                         <th>ID</th>
@@ -347,12 +347,6 @@
 
       $(document).ready(function() {
         refresh_jumlah();
-        $('#btn-refresh').click(function(){
-            refresh_jumlah();
-            $('#tblbuku').dataTable().fnReloadAjax();
-            $('#tbljenis').dataTable().fnReloadAjax();
-            $('#tblkoleksi').dataTable().fnReloadAjax();
-        });
 
         $('#btn-tambah-buku').click(function(){
             $('#form-pesan-tambah').html('');
@@ -378,14 +372,23 @@
             
         });
 
+        $.fn.dataTable.TableTools.defaults.aButtons = [ 
+          "xls", 
+          {
+              "sExtends": "pdf",
+              "sPdfOrientation": "landscape",
+              "sPdfMessage": "data di-generate pada <?=date('d-m-Y H:i:s',now());?>"
+          }, 
+          "print" 
+        ];
+
+        // $.fn.dataTable.TableTools.defaults.sSwfPath = "<?=base_url('public/plugins/datatables/swf/copy_csv_xls_pdf.swf')?>";
+
         var tblbuku = $("#tblbuku").dataTable({
-            
-            "processing": true,
+            "processing": false,
             "ajax": "<?=site_url('buku/getbuku');?>",
             "deferRender": true,
             "autoWidth": false,
-            "lengthChange": false,
-            "pagingType": "bootstrap",
             "columns": [
               { "data": "buku_id" },
               { "data": "buku_judul" },
@@ -397,27 +400,17 @@
               { "data": "Bstatus" },
               { "data": "Bopsi", "searchable": false, "sortable": false, "width": "8%" },
             ],
-            tableTools: {
-              "aButtons": [
-                "xls",
-                {
-                    "sExtends": "pdf",
-                    "sPdfOrientation": "landscape",
-                    "sPdfMessage": "data di-generate pada <?=date('d-m-Y H:i:s',now());?>"
-                },
-                "print"
-              ],
-              sSwfPath: "<?=base_url('public/plugins/datatables/swf/copy_csv_xls_pdf.swf')?>"
-            }
+
         });
 
-        $('#tbljenis').dataTable({
+        var tt = new $.fn.dataTable.TableTools( tblbuku );
+        $( tt.fnContainer() ).insertBefore('div.dataTables_wrapper');
+
+        var tbljenis = $('#tbljenis').dataTable({
             "processing": true,
-            "serverSide": true,
-            "ajax": {
-                "url": "<?=site_url('jenis/getjenis');?>",
-                "type": "POST"
-            },
+            "ajax": "<?=site_url('jenis/getjenis');?>",
+            "deferRender": true,
+            "autoWidth": false,
             "columns": [
               { "data": "jenis_id" },
               { "data": "jenis_teks" },
@@ -425,13 +418,11 @@
               { "data": "Jopsi", "searchable": false, "sortable": false },
             ],
         });
-        $('#tblkoleksi').dataTable({
+        var tblkoleksi = $('#tblkoleksi').dataTable({
             "processing": true,
-            "serverSide": true,
-            "ajax": {
-                "url": "<?=site_url('koleksi/getkoleksi');?>",
-                "type": "POST"
-            },
+            "ajax": "<?=site_url('koleksi/getkoleksi');?>",
+            "deferRender": true,
+            "autoWidth": false,
             "columns": [
               { "data": "koleksi_id" },
               { "data": "koleksi_nama" },
@@ -439,6 +430,14 @@
               { "data": "Jopsi", "searchable": false, "sortable": false },
             ],
         });
+
+        $('#btn-refresh').click(function(){
+            refresh_jumlah();
+            tblbuku.ajax.reload( null, false );
+            tbljenis.ajax.reload( null, false );
+            tblkoleksi.ajax.reload( null, false );
+        });
+
       });
     </script>
     
