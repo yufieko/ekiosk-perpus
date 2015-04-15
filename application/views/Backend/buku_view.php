@@ -55,7 +55,7 @@
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <table id="tblbuku" class="table table-bordered table-striped display nowrap" cellspacing="0" width="100%">
+                  <table id="tblbuku" class="table table-bordered table-striped table-hover dt-responsive" cellspacing="0" width="100%">
                     <thead>
                       <tr>
                         <th>ID</th>
@@ -177,7 +177,7 @@
         <div class="pull-right hidden-xs">
           <b>Versi</b> Beta 0.2
         </div>
-        <strong><?=$web->web_footer;?>.</strong> All rights reserved.
+        <strong><?=$web->web_footer;?>.</strong> All rights reserved. <i>{elapsed_time} detik</i>
       </footer>
 
     </div><!-- ./wrapper -->
@@ -334,8 +334,6 @@
 
     <!-- Perpus App -->
     <script src="<?=base_url('public/dist/js/app.min.js');?>" type="text/javascript"></script>
-    <script src="<?=base_url('public/dist/js/jQuery.dtplugin.js');?>" type="text/javascript"></script>
-    <script src="<?=base_url('public/dist/js/zjs.utils.js');?>" type="text/javascript"></script>
     <!-- page script -->
     <script type="text/javascript">
       function refresh_jumlah(){
@@ -380,13 +378,14 @@
             
         });
 
-        $("#tblbuku").dataTable({
+        var tblbuku = $("#tblbuku").dataTable({
+            
             "processing": true,
-            "serverSide": true,
-            "ajax": {
-                "url": "<?=site_url('buku/getbuku');?>",
-                "type": "POST"
-            },
+            "ajax": "<?=site_url('buku/getbuku');?>",
+            "deferRender": true,
+            "autoWidth": false,
+            "lengthChange": false,
+            "pagingType": "bootstrap",
             "columns": [
               { "data": "buku_id" },
               { "data": "buku_judul" },
@@ -396,9 +395,22 @@
               { "data": "buku_jumlah" },
               { "data": "buku_pinjam" },
               { "data": "Bstatus" },
-              { "data": "Bopsi", "searchable": false, "sortable": false },
+              { "data": "Bopsi", "searchable": false, "sortable": false, "width": "8%" },
             ],
+            tableTools: {
+              "aButtons": [
+                "xls",
+                {
+                    "sExtends": "pdf",
+                    "sPdfOrientation": "landscape",
+                    "sPdfMessage": "data di-generate pada <?=date('d-m-Y H:i:s',now());?>"
+                },
+                "print"
+              ],
+              sSwfPath: "<?=base_url('public/plugins/datatables/swf/copy_csv_xls_pdf.swf')?>"
+            }
         });
+
         $('#tbljenis').dataTable({
             "processing": true,
             "serverSide": true,
