@@ -62,6 +62,18 @@ class Buku_model extends CI_Model {
         return ($query->num_rows() > 0 ? $query->result() : NULL);
     }
 
+    function listjenis($select) {
+        $this->db->select($select)->from('tb_jenis');
+        $query = $this->db->get();
+        return $query;
+    }
+
+    function listkoleksi($select) {
+        $this->db->select($select)->from('tb_koleksi');
+        $query = $this->db->get();
+        return $query;
+    }
+
     /**
      * @return
      * Expressions / Columns to append to the select created by the Datatable library

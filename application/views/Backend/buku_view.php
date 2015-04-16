@@ -196,7 +196,7 @@
               <?php echo form_open('buku/tambah', 'id="form-tambah-buku"') ?>
               <div class="box-body">
                 <div class="row">
-                  <div class="col-md-8">
+                  <div class="col-xs-7">
                     <div class="form-group">
                       <div class="input-group">
                         <span class="input-group-addon">Judul:</span>
@@ -215,60 +215,68 @@
                     <div class="form-group">
                       <div class="input-group">
                         <span class="input-group-addon">Penerbit:</span>
-                        <input type="text" class="form-control" id="tambah-tag" name="tambah-tag" placeholder="Tag, Jika lebih dari 1 pisahkan dengan koma" />
+                        <input type="text" class="form-control" id="tambah-penerbit" name="tambah-penerbit" placeholder="Nama penerbit" />
                       </div><!-- /.input group -->
                     </div>
                     <div class="form-group">
                       <div class="input-group">
                         <span class="input-group-addon">Buku Masuk:</span>
-                        <input type="text" class="form-control" id="tambah-time" name="tambah-time" placeholder="Waktu Artikel" value="<?=date("Y-m-d H:i:s",now());?>" />
+                        <input type="text" class="form-control" id="tambah-masuk" name="tambah-masuk" placeholder="Buku Masuk" value="<?=date("Y-m-d H:i:s",now());?>" />
                       </div><!-- /.input group -->
                     </div>
                     <div class="form-group">
                       <div class="input-group">
                         <span class="input-group-addon">Status:</span>
                         <select class="form-control" id="tambah-status" name="tambah-status">
-                            <option value="1">Publish</option>
-                            <option value="0">Draft</option>
+                            <option value="1">Ada</option>
+                            <option value="0">Tidak Ada</option>
                         </select>
                       </div><!-- /.input group -->
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-xs-5">
                     <div class="form-group">
                       <div class="input-group">
                         <span class="input-group-addon">Jenis:</span>
-                        <select class="form-control" id="tambah-status" name="tambah-status">
-                            <option value="1">Publish</option>
-                            <option value="0">Draft</option>
-                        </select>
+                        <?php 
+                          $js = 'class="form-control" id="tambah-jenis"';
+                          $opt = array();
+                          foreach($listjenis as $j){
+                            $opt[$j->jenis_id] = $j->jenis_teks;
+                          }
+                          echo form_dropdown('tambah-jenis', $opt, '', $js);
+                        ?>   
                       </div><!-- /.input group -->
                     </div>
                     <div class="form-group">
                       <div class="input-group">
                         <span class="input-group-addon">Koleksi:</span>
-                        <select class="form-control" id="tambah-status" name="tambah-status">
-                            <option value="1">Publish</option>
-                            <option value="0">Draft</option>
-                        </select>
+                        <?php 
+                          $js = 'class="form-control" id="tambah-koleksi"';
+                          $opt = array();
+                          foreach($listkoleksi as $j){
+                            $opt[$j->koleksi_id] = $j->koleksi_nama;
+                          }
+                          echo form_dropdown('tambah-koleksi', $opt, '', $js);
+                        ?>
                       </div><!-- /.input group -->
                     </div>
                     <div class="form-group">
                       <div class="input-group">
                         <span class="input-group-addon">Tahun:</span>
-                        <input type="text" class="form-control" id="tambah-time" name="tambah-time" placeholder="Waktu Artikel" value="<?=date("Y",now());?>" />
+                        <input type="text" class="form-control" id="tambah-tahun" name="tambah-tahun" placeholder="Tahun Terbit" />
                       </div><!-- /.input group -->
                     </div>
                     <div class="form-group">
                       <div class="input-group">
                         <span class="input-group-addon">Letak:</span>
-                        <input type="text" class="form-control" id="tambah-tag" name="tambah-tag" placeholder="Tag, Jika lebih dari 1 pisahkan dengan koma" />
+                        <input type="text" class="form-control" id="tambah-letak" name="tambah-letak" placeholder="Letak Buku" />
                       </div><!-- /.input group -->
                     </div>
                     <div class="form-group">
                       <div class="input-group">
                         <span class="input-group-addon">Jumlah Buku:</span>
-                        <input type="text" class="form-control" id="tambah-tag" name="tambah-tag" placeholder="Tag, Jika lebih dari 1 pisahkan dengan koma" />
+                        <input type="text" class="form-control" id="tambah-jumlah" name="tambah-jumlah" placeholder="Jumlah" />
                       </div><!-- /.input group -->
                     </div>
 
@@ -284,9 +292,9 @@
           </div>
         </div>
         <!-- Loading (remove the following to stop the loading)-->
-        <div class="overlay" style="display:none">
+        <!-- <div class="overlay" style="display:none">
           <i class="fa fa-refresh fa-spin"></i>
-        </div>
+        </div> -->
         <!-- end loading -->
       </div>
     </div>
@@ -382,8 +390,6 @@
           "print" 
         ];
 
-        // $.fn.dataTable.TableTools.defaults.sSwfPath = "<?=base_url('public/plugins/datatables/swf/copy_csv_xls_pdf.swf')?>";
-
         var tblbuku = $("#tblbuku").dataTable({
             "processing": false,
             "ajax": "<?=site_url('buku/getbuku');?>",
@@ -418,6 +424,7 @@
               { "data": "Jopsi", "searchable": false, "sortable": false },
             ],
         });
+
         var tblkoleksi = $('#tblkoleksi').dataTable({
             "processing": true,
             "ajax": "<?=site_url('koleksi/getkoleksi');?>",
@@ -429,6 +436,46 @@
               { "data": "Jumlah", "searchable": false },
               { "data": "Jopsi", "searchable": false, "sortable": false },
             ],
+        });
+
+        // Tambah artikel
+        $('#btn-simpan').click(function(){
+            $('#form-tambah-buku').submit();
+            $('#btn-simpan').addClass('disabled');
+        });
+
+        $('#form-tambah-buku').submit(function(){
+            // create a FormData Object using your form dom element
+            var form = new FormData(document.getElementById('form-tambah-buku'));
+            //append files
+            var file = document.getElementById('tambah-gambar').files[0];
+            if (file) {   
+              form.append('tambah-gambar', file);
+            }
+
+            $.ajax({
+                url:"<?=site_url('buku/tambah')?>",
+                type:"POST",
+                data:form,
+                cache: false,
+                contentType: false, //must, tell jQuery not to process the data
+                processData: false, //must, tell jQuery not to set contentType
+                success:function(respon){
+                    var obj = $.parseJSON(respon);
+                    if(obj.status==1){
+                        $('#form-pesan-tambah').html(pesan_succ(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-tambah').html('')}, 2000);
+                        setTimeout(function(){$('#modal-tambah-buku').modal('hide')}, 2500);
+                        setTimeout(function(){ tblbuku.ajax.reload( null, false ); refresh_jumlah(); }, 2500);
+                    }else{
+                        $('#form-pesan-tambah').html(pesan_err(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-tambah').html('')}, 5000);
+                    }
+                    
+                    $('#btn-simpan').removeClass('disabled');
+                }
+            });
+            return false;
         });
 
         $('#btn-refresh').click(function(){

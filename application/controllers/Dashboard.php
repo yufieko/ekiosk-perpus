@@ -39,6 +39,12 @@ class Dashboard extends MY_Controller {
 	}
 
 	public function buku() {
+		// load model
+		$this->load->model('buku_model');
+		
+		$this->data['listjenis'] = $this->buku_model->listjenis(array('*'))->result();
+		$this->data['listkoleksi'] = $this->buku_model->listkoleksi(array('*'))->result();
+
 		$this->load->view('Backend/header_view', $this->datah);
 		$this->load->view('Backend/buku_view', $this->data);
 	}
