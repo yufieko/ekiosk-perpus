@@ -78,6 +78,8 @@
     <script src="<?=base_url('public/plugins/sparkline/jquery.sparkline.min.js');?>" type="text/javascript"></script>
     <!-- jQuery Knob Chart -->
     <script src="<?=base_url('public/plugins/knob/jquery.knob.js');?>" type="text/javascript"></script>
+    <!-- Misc -->
+    <script src="<?=base_url('public/dist/js/misc.js');?>" type="text/javascript"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {

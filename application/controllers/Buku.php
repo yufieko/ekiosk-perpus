@@ -40,4 +40,71 @@ class Buku extends MY_Controller {
 
         echo json_encode($data);
     }
+
+    public function tambah() {
+        $config['upload_path']          = './public/buku/';
+        $config['allowed_types']        = 'png|jpg|jpeg|gif';
+        $config['max_size']             = 1000;
+        $config['file_ext_tolower']     = TRUE;
+
+        $this->load->library('upload', $config);
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('tambah-judul', 'Judul','trim|required|strip_tags|min_length[5]');
+        $this->form_validation->set_rules('tambah-penulis', 'Penulis','trim|required|strip_tags');
+        $this->form_validation->set_rules('tambah-penerbit', 'Penulis','trim|required|strip_tags');
+        $this->form_validation->set_rules('tambah-teks', 'Deskripsi Singkat Buku','trim|required|strip_tags');
+        $this->form_validation->set_rules('tambah-masuk', 'Buku Masuk','trim|required|strip_tags');
+        $this->form_validation->set_rules('tambah-jenis', 'Jenis','trim|required|strip_tags');
+        $this->form_validation->set_rules('tambah-koleksi', 'Koleksi','trim|required|strip_tags');
+        $this->form_validation->set_rules('tambah-tahun', 'Tahun','trim|required|strip_tags|is_natural_no_zero');
+        $this->form_validation->set_rules('tambah-letak', 'Letak','trim|required|strip_tags');
+        $this->form_validation->set_rules('tambah-jumlah', 'Jumlah','trim|required|strip_tags|is_natural');
+        $this->form_validation->set_rules('tambah-status', 'Status','trim|required|strip_tags');
+
+        if($this->form_validation->run() == TRUE){
+            //$stringURL = str_replace(' ', '-', strtolower(addslashes($this->input->post('tambah-judul', TRUE)))); // Converts spaces to dashes
+            if($_FILES['tambah-gambar']['size'] == 0) {
+                $data = array(
+                    'post_title' => addslashes($this->input->post('tambah-judul', TRUE)),
+                    'post_content' => addslashes($this->input->post('tambah-teks', TRUE)),
+                    'post_tag' => addslashes($this->input->post('tambah-tag', TRUE)),
+                    'post_author' => $this->access->get_userid(),
+                    'post_link' => $stringURL,
+                    'post_status' => addslashes($this->input->post('tambah-status', TRUE))
+                );
+
+                $this->post_model->insert($data);
+
+                $status['status'] = 1;
+                $status['pesan'] = 'Artikel baru berhasil ditambahkan';
+            } else {
+                if (!$this->upload->do_upload('tambah-attachment')) {
+                    $status['status'] = 0;
+                    $status['pesan'] = $this->upload->display_errors();
+                } else {
+                    $data = array(
+                        'post_title' => addslashes($this->input->post('tambah-judul', TRUE)),
+                        'post_content' => addslashes($this->input->post('tambah-teks', TRUE)),
+                        'post_tag' => addslashes($this->input->post('tambah-tag', TRUE)),
+                        'post_author' => $this->access->get_userid(),
+                        'post_pic' => $this->upload->data('file_name'),
+                        'post_link' => $stringURL,
+                        'post_status' => addslashes($this->input->post('tambah-status', TRUE))
+                    );
+
+                    $this->post_model->insert($data);
+
+                    $status['status'] = 1;
+                    $status['pesan'] = 'Artikel baru berhasil ditambahkan';
+                }
+                @unlink($_FILES['tambah-attachment']);
+            }
+
+        }else{
+            $status['status'] = 0;
+            $status['pesan'] = validation_errors();
+        }
+
+        echo json_encode($status);
+    }
 }

@@ -436,7 +436,8 @@ $config['csrf_regenerate'] = TRUE;
 $config['csrf_exclude_uris'] = array('buku/getbuku',
 								'dashboard/buku',
 								'jenis/getjenis',
-								'koleksi/getkoleksi');
+								'koleksi/getkoleksi',
+								'buku/tambah');
 
 /*
 |--------------------------------------------------------------------------

@@ -193,7 +193,7 @@
           <div class="modal-body">
             <div class="box-body table-responsive">
               <span id="form-pesan-tambah"></span>
-              <?php echo form_open('buku/tambah', 'id="form-tambah-buku"') ?>
+              <?php echo form_open_multipart('buku/tambah', 'id="form-tambah-buku"') ?>
               <div class="box-body">
                 <div class="row">
                   <div class="col-xs-7">
@@ -210,7 +210,7 @@
                       </div><!-- /.input group -->
                     </div>
                     <div class="form-group">
-                      <textarea name="tambah-teks" id="tambah-teks" class="form-control textarea" placeholder="Deskripsi singkat" style="height: 100px;overflow:auto;resize:none"></textarea>
+                      <textarea name="tambah-teks" id="tambah-teks" class="form-control textarea" placeholder="Deskripsi singkat buku" style="height: 100px;overflow:auto;resize:none"></textarea>
                     </div>
                     <div class="form-group">
                       <div class="input-group">
@@ -278,6 +278,10 @@
                         <span class="input-group-addon">Jumlah Buku:</span>
                         <input type="text" class="form-control" id="tambah-jumlah" name="tambah-jumlah" placeholder="Jumlah" />
                       </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                        <input type="file" name="tambah-gambar" id="tambah-gambar"/>  
+                        <p class="help-block">Gambar Maks. 1MB</p>
                     </div>
 
                   </div>
@@ -464,12 +468,12 @@
                     var obj = $.parseJSON(respon);
                     if(obj.status==1){
                         $('#form-pesan-tambah').html(pesan_succ(obj.pesan));
-                        setTimeout(function(){$('#form-pesan-tambah').html('')}, 2000);
+                        setTimeout(function(){$('#form-pesan-tambah').html('')}, 5000);
                         setTimeout(function(){$('#modal-tambah-buku').modal('hide')}, 2500);
                         setTimeout(function(){ tblbuku.ajax.reload( null, false ); refresh_jumlah(); }, 2500);
                     }else{
                         $('#form-pesan-tambah').html(pesan_err(obj.pesan));
-                        setTimeout(function(){$('#form-pesan-tambah').html('')}, 5000);
+                        setTimeout(function(){$('#form-pesan-tambah').html('')}, 7000);
                     }
                     
                     $('#btn-simpan').removeClass('disabled');
