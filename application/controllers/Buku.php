@@ -47,6 +47,9 @@ class Buku extends MY_Controller {
         $config['max_size']             = 1000;
         $config['file_ext_tolower']     = TRUE;
 
+        $status['status'] = 1;
+        $status['pesan'] = 'Data buku baru berhasil ditambahkan';
+
         $this->load->library('upload', $config);
         $this->load->library('form_validation');
         $this->form_validation->set_rules('tambah-judul', 'Judul','trim|required|strip_tags|min_length[5]');
@@ -65,39 +68,43 @@ class Buku extends MY_Controller {
             //$stringURL = str_replace(' ', '-', strtolower(addslashes($this->input->post('tambah-judul', TRUE)))); // Converts spaces to dashes
             if($_FILES['tambah-gambar']['size'] == 0) {
                 $data = array(
-                    'post_title' => addslashes($this->input->post('tambah-judul', TRUE)),
-                    'post_content' => addslashes($this->input->post('tambah-teks', TRUE)),
-                    'post_tag' => addslashes($this->input->post('tambah-tag', TRUE)),
-                    'post_author' => $this->access->get_userid(),
-                    'post_link' => $stringURL,
-                    'post_status' => addslashes($this->input->post('tambah-status', TRUE))
+                    'buku_judul' => addslashes($this->input->post('tambah-judul', TRUE)),
+                    'buku_penulis' => addslashes($this->input->post('tambah-penulis', TRUE)),
+                    'buku_penerbit' => addslashes($this->input->post('tambah-penerbit', TRUE)),
+                    'buku_tahun' => addslashes($this->input->post('tambah-tahun', TRUE)),
+                    'buku_masuk' => addslashes($this->input->post('tambah-masuk', TRUE)),
+                    'jenis_id' => addslashes($this->input->post('tambah-jenis', TRUE)),
+                    'koleksi_id' => addslashes($this->input->post('tambah-koleksi', TRUE)),
+                    'buku_letak' => addslashes($this->input->post('tambah-letak', TRUE)),
+                    'buku_deskripsi' => addslashes($this->input->post('tambah-teks', TRUE)),
+                    'buku_jumlah' => addslashes($this->input->post('tambah-jumlah', TRUE)),
+                    'buku_status' => addslashes($this->input->post('tambah-status', TRUE))
                 );
 
-                $this->post_model->insert($data);
-
-                $status['status'] = 1;
-                $status['pesan'] = 'Artikel baru berhasil ditambahkan';
+                $this->buku_model->insert($data);
             } else {
-                if (!$this->upload->do_upload('tambah-attachment')) {
+                if (!$this->upload->do_upload('tambah-gambar')) {
                     $status['status'] = 0;
                     $status['pesan'] = $this->upload->display_errors();
                 } else {
                     $data = array(
-                        'post_title' => addslashes($this->input->post('tambah-judul', TRUE)),
-                        'post_content' => addslashes($this->input->post('tambah-teks', TRUE)),
-                        'post_tag' => addslashes($this->input->post('tambah-tag', TRUE)),
-                        'post_author' => $this->access->get_userid(),
-                        'post_pic' => $this->upload->data('file_name'),
-                        'post_link' => $stringURL,
-                        'post_status' => addslashes($this->input->post('tambah-status', TRUE))
+                        'buku_judul' => addslashes($this->input->post('tambah-judul', TRUE)),
+                        'buku_penulis' => addslashes($this->input->post('tambah-penulis', TRUE)),
+                        'buku_penerbit' => addslashes($this->input->post('tambah-penerbit', TRUE)),
+                        'buku_tahun' => addslashes($this->input->post('tambah-tahun', TRUE)),
+                        'buku_masuk' => addslashes($this->input->post('tambah-masuk', TRUE)),
+                        'jenis_id' => addslashes($this->input->post('tambah-jenis', TRUE)),
+                        'koleksi_id' => addslashes($this->input->post('tambah-koleksi', TRUE)),
+                        'buku_letak' => addslashes($this->input->post('tambah-letak', TRUE)),
+                        'buku_deskripsi' => addslashes($this->input->post('tambah-teks', TRUE)),
+                        'buku_jumlah' => addslashes($this->input->post('tambah-jumlah', TRUE)),
+                        'buku_status' => addslashes($this->input->post('tambah-status', TRUE)),
+                        'buku_gambar' => $this->upload->data('file_name')
                     );
 
-                    $this->post_model->insert($data);
-
-                    $status['status'] = 1;
-                    $status['pesan'] = 'Artikel baru berhasil ditambahkan';
+                    $this->buku_model->insert($data);
                 }
-                @unlink($_FILES['tambah-attachment']);
+                @unlink($_FILES['tambah-gambar']);
             }
 
         }else{

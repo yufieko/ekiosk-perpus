@@ -395,10 +395,14 @@
         ];
 
         var tblbuku = $("#tblbuku").dataTable({
-            "processing": false,
-            "ajax": "<?=site_url('buku/getbuku');?>",
+            "processing": true,
+            "ajax": {
+              "url" : "<?=site_url('buku/getbuku');?>",
+              "type" : "POST"
+            },
             "deferRender": true,
             "autoWidth": false,
+            "order": [[ 0, "desc" ]],
             "columns": [
               { "data": "buku_id" },
               { "data": "buku_judul" },
@@ -470,7 +474,7 @@
                         $('#form-pesan-tambah').html(pesan_succ(obj.pesan));
                         setTimeout(function(){$('#form-pesan-tambah').html('')}, 5000);
                         setTimeout(function(){$('#modal-tambah-buku').modal('hide')}, 2500);
-                        setTimeout(function(){ tblbuku.ajax.reload( null, false ); refresh_jumlah(); }, 2500);
+                        setTimeout(function(){ refresh_jumlah(); tblbuku.ajax.reload( null, false ); }, 2500);
                     }else{
                         $('#form-pesan-tambah').html(pesan_err(obj.pesan));
                         setTimeout(function(){$('#form-pesan-tambah').html('')}, 7000);
