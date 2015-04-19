@@ -2184,7 +2184,7 @@ table.text-center, table.text-center td, table.text-center th {
 	margin-top: -20px
 }
 .modal {
-	background: rgba(0, 0, 0, 0.3)
+	background: rgba(0, 0, 0, 0.5)
 }
 .modal-content {
 	border-radius: 0;
@@ -3281,4 +3281,9 @@ table.text-center, table.text-center td, table.text-center th {
 	.table-responsive>.table tr th, .table-responsive>.table tr td {
 		white-space: normal !important
 	}
+}
+
+.modal-backdrop.fade {
+  filter: alpha(opacity=0);
+  opacity: 0;
 }

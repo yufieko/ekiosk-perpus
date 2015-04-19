@@ -5,14 +5,14 @@ class Buku_model extends CI_Model {
 
 	function get_total($from = 'tb_buku', $parameter = array()) {
         if(!empty($parameter)){
-            $this->db->select('count(*) AS Total');
-            $this->db->from($from);
-            $this->db->where($parameter);
+            $this->db->select('count(*) AS Total')
+                ->from($from)
+                ->where($parameter);
             $query = $this->db->get();
             return ($query->num_rows() > 0 ? $query->row()->Total : 0);
         }else{
-            $this->db->select('count(*) AS Total');
-            $this->db->from($from);
+            $this->db->select('count(*) AS Total')
+                ->from($from);
             $query = $this->db->get();
             return ($query->num_rows() > 0 ? $query->row()->Total : 0);
         }
@@ -39,25 +39,61 @@ class Buku_model extends CI_Model {
         return ($query->num_rows() > 0 ? $query->row()->Pinjam : 0);
     }
 
-    function insert($data) {
-        $this->db->insert('tb_buku', $data);
+    function insert($tabel, $data) {
+        $this->db->insert($tabel, $data);
     }
 
-    function delete($id) {
-        $this->db->where('akses_id', $id);
-        $this->db->delete('tb_buku');
+    function delete($tabel = "", $id) {
+        $primaryKey = "";
+
+        switch ($tabel) {
+            case 'tb_buku': $primaryKey = "buku_id"; break;
+            case 'tb_jenis': $primaryKey = "jenis_id"; break;
+            case 'tb_koleksi': $primaryKey = "koleksi_id"; break;
+            default: $primaryKey = "buku_id"; break;
+        }
+
+        $this->db->where($primaryKey, $id)
+            ->delete($tabel);
     }
 
-    function update($id, $data) {
-        $this->db->where('akses_id', $id);
-        $this->db->update('tb_buku', $data);
+    function update($tabel, $id, $data) {
+        $primaryKey = "";
+
+        switch ($tabel) {
+            case 'tb_buku': $primaryKey = "buku_id"; break;
+            case 'tb_jenis': $primaryKey = "jenis_id"; break;
+            case 'tb_koleksi': $primaryKey = "koleksi_id"; break;
+            default: $primaryKey = "buku_id"; break;
+        }
+
+        $this->db->where($primaryKey, $id)
+            ->update($tabel, $data);
     }
 
-    function select($data, $no) {
-        $this->db->select('*');
-        $this->db->from('tb_buku');
-        $this->db->where($data);
-        $this->db->limit($no);
+    function select($data, $no = 0) {
+        $this->db->select('*')
+            ->from('tb_buku')
+            ->where($data)
+            ->limit($no);
+        $query = $this->db->get();
+        return ($query->num_rows() > 0 ? $query->result() : NULL);
+    }
+
+    function selectJenis($data, $no = 0) {
+        $this->db->select('*')
+            ->from('tb_jenis')
+            ->where($data)
+            ->limit($no);
+        $query = $this->db->get();
+        return ($query->num_rows() > 0 ? $query->result() : NULL);
+    }
+
+    function selectKoleksi($data, $no = 0) {
+        $this->db->select('*')
+            ->from('tb_koleksi')
+            ->where($data)
+            ->limit($no);
         $query = $this->db->get();
         return ($query->num_rows() > 0 ? $query->result() : NULL);
     }
