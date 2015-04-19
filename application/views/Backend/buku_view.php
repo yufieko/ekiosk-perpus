@@ -183,18 +183,17 @@
     </div><!-- ./wrapper -->
 
     <!-- Modal Tambah  -->
-    <div class="modal modal-primary fade" id="modal-tambah-buku" data-backdrop="static">
-      <div class="modal-dialog" style="width: 50%;">
+    <div class="modal modal-primary fade" id="modal-tambah-buku" tabindex="-1" data-backdrop="static">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title"><i class="fa fa-book"></i> Tambah Buku Baru </h4>
           </div>
           <div class="modal-body">
-            <div class="box-body table-responsive">
+            <div class="container-fluid">
               <span id="form-pesan-tambah"></span>
               <?php echo form_open_multipart('buku/tambah', 'id="form-tambah-buku"') ?>
-              <div class="box-body">
                 <div class="row">
                   <div class="col-xs-7">
                     <div class="form-group">
@@ -286,13 +285,12 @@
 
                   </div>
                 </div>
-              </div>
               <?php echo form_close(); ?>
             </div><!-- /.box-body -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-            <button id="btn-simpan" type="button" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+            <button id="btn-simpan-buku" type="button" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
           </div>
         </div>
         <!-- Loading (remove the following to stop the loading)-->
@@ -303,13 +301,129 @@
       </div>
     </div>
 
+    <!-- Modal Edit Buku  -->
+    <div class="modal modal-primary fade" id="modal-edit-buku" data-backdrop="static">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title"><i class="fa fa-book"></i> Edit Data Buku</h4>
+          </div>
+          <div class="modal-body">
+            <div class="box-body table-responsive">
+              <span id="form-pesan-tambah"></span>
+              <?php echo form_open_multipart('buku/edit', 'id="form-edit-buku"') ?>
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-xs-7">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Judul:</span>
+                        <input type="text" class="form-control" id="edit-judul" name="edit-judul" placeholder="Judul Buku" />
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Penulis:</span>
+                        <input type="text" class="form-control" id="edit-penulis" name="edit-penulis" placeholder="Penulis Buku" />
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <textarea name="edit-teks" id="edit-teks" class="form-control textarea" placeholder="Deskripsi singkat buku" style="height: 100px;overflow:auto;resize:none"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Penerbit:</span>
+                        <input type="text" class="form-control" id="edit-penerbit" name="edit-penerbit" placeholder="Nama penerbit" />
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Buku Masuk:</span>
+                        <input type="text" class="form-control" id="edit-masuk" name="edit-masuk" placeholder="Buku Masuk" value="<?=date("Y-m-d H:i:s",now());?>" />
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Status:</span>
+                        <select class="form-control" id="edit-status" name="edit-status">
+                            <option value="1">Ada</option>
+                            <option value="0">Tidak Ada</option>
+                        </select>
+                      </div><!-- /.input group -->
+                    </div>
+                  </div>
+                  <div class="col-xs-5">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Jenis:</span>
+                        <?php 
+                          $js = 'class="form-control" id="edit-jenis"';
+                          $opt = array();
+                          foreach($listjenis as $j){
+                            $opt[$j->jenis_id] = $j->jenis_teks;
+                          }
+                          echo form_dropdown('edit-jenis', $opt, '', $js);
+                        ?>   
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Koleksi:</span>
+                        <?php 
+                          $js = 'class="form-control" id="edit-koleksi"';
+                          $opt = array();
+                          foreach($listkoleksi as $j){
+                            $opt[$j->koleksi_id] = $j->koleksi_nama;
+                          }
+                          echo form_dropdown('edit-koleksi', $opt, '', $js);
+                        ?>
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Tahun:</span>
+                        <input type="text" class="form-control" id="edit-tahun" name="edit-tahun" placeholder="Tahun Terbit" />
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Letak:</span>
+                        <input type="text" class="form-control" id="edit-letak" name="edit-letak" placeholder="Letak Buku" />
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">Jumlah Buku:</span>
+                        <input type="text" class="form-control" id="edit-jumlah" name="edit-jumlah" placeholder="Jumlah" />
+                      </div><!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                        <input type="file" name="edit-gambar" id="edit-gambar"/>  
+                        <p class="help-block">Gambar Maks. 1MB</p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <?php echo form_close(); ?>
+            </div><!-- /.box-body -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
+            <button id="btn-edit-buku" type="button" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Modal Hapus -->
-    <div class="modal modal-danger fade" id="modal-hapus" data-backdrop="static">
+    <div class="modal modal-danger fade" id="modal-hapus-buku" data-backdrop="static">
       <div class="modal-dialog" style="width: 350px;">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title"><i class="fa fa-book"></i> Hapus Data </h4>
+            <h4 class="modal-title"><i class="fa fa-book"></i> Hapus Data Buku </h4>
           </div>
           <div class="modal-body">
             <div class="box-body table-responsive">
@@ -333,7 +447,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-            <button id="btn-hapus" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Iya, Hapus</button>
+            <button id="btn-hapus-buku" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Iya, Hapus</button>
           </div>
         </div>
         <!-- Loading (remove the following to stop the loading)-->
@@ -365,11 +479,7 @@
             $('#modal-tambah-buku').modal('show');
         });
 
-        $('#btn-hapus').click(function(){
-            $('#modal-hapus').modal('show');
-        });
-
-        $('#modal-hapus').on('show.bs.modal', function (e) {
+        $('#modal-hapus-buku').on('show.bs.modal', function (e) {
             var id = $(e.relatedTarget).attr('data-id');
             var title = $(e.relatedTarget).attr('data-title');
             $(this).find('#hapus-id').text(id);
@@ -378,7 +488,17 @@
             $(this).find('.hapus-penulis').text(title);
         });
 
-        $('#btn-hapus').click(function(){
+        $('#modal-edit-buku').on('show.bs.modal', function (e) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var id = button.data('id');
+            var title = $(e.relatedTarget).attr('data-title');
+            $(this).find('#hapus-id').text(id);
+            $(this).find('#hapus-judul').text(title);
+            $(this).find('.hapus-judul').text(title);
+            $(this).find('.hapus-penulis').text(title);
+        });
+
+        $('#btn-hapus-buku').click(function(){
             //$('#form-hapus').submit();
             $('#btn-hapus').addClass('disabled');
             
@@ -394,7 +514,7 @@
           "print" 
         ];
 
-        var tblbuku = $("#tblbuku").dataTable({
+        var tblbuku = $("#tblbuku").DataTable({
             "processing": true,
             "ajax": {
               "url" : "<?=site_url('buku/getbuku');?>",
@@ -420,7 +540,7 @@
         var tt = new $.fn.dataTable.TableTools( tblbuku );
         $( tt.fnContainer() ).insertBefore('div.dataTables_wrapper');
 
-        var tbljenis = $('#tbljenis').dataTable({
+        var tbljenis = $('#tbljenis').DataTable({
             "processing": true,
             "ajax": "<?=site_url('jenis/getjenis');?>",
             "deferRender": true,
@@ -433,7 +553,7 @@
             ],
         });
 
-        var tblkoleksi = $('#tblkoleksi').dataTable({
+        var tblkoleksi = $('#tblkoleksi').DataTable({
             "processing": true,
             "ajax": "<?=site_url('koleksi/getkoleksi');?>",
             "deferRender": true,
@@ -447,9 +567,9 @@
         });
 
         // Tambah artikel
-        $('#btn-simpan').click(function(){
+        $('#btn-simpan-buku').click(function(){
             $('#form-tambah-buku').submit();
-            $('#btn-simpan').addClass('disabled');
+            $('#btn-simpan-buku').addClass('disabled');
         });
 
         $('#form-tambah-buku').submit(function(){
@@ -474,13 +594,13 @@
                         $('#form-pesan-tambah').html(pesan_succ(obj.pesan));
                         setTimeout(function(){$('#form-pesan-tambah').html('')}, 5000);
                         setTimeout(function(){$('#modal-tambah-buku').modal('hide')}, 2500);
-                        setTimeout(function(){ refresh_jumlah(); tblbuku.ajax.reload( null, false ); }, 2500);
+                        setTimeout(function(){ refresh_jumlah(); tblbuku.ajax.reload(); }, 2500);
                     }else{
                         $('#form-pesan-tambah').html(pesan_err(obj.pesan));
                         setTimeout(function(){$('#form-pesan-tambah').html('')}, 7000);
                     }
                     
-                    $('#btn-simpan').removeClass('disabled');
+                    $('#btn-simpan-buku').removeClass('disabled');
                 }
             });
             return false;
@@ -488,9 +608,9 @@
 
         $('#btn-refresh').click(function(){
             refresh_jumlah();
-            tblbuku.ajax.reload( null, false );
-            tbljenis.ajax.reload( null, false );
-            tblkoleksi.ajax.reload( null, false );
+            tblbuku.ajax.reload();
+            tbljenis.ajax.reload();
+            tblkoleksi.ajax.reload();
         });
 
       });

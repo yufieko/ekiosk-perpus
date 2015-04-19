@@ -2517,7 +2517,16 @@ TableTools.prototype = {
 		$('div.'+this.classes.print.message).remove();
 
 		/* Styling class */
-		$(document.body).removeClass( 'DTTT_Print' );
+		//$(document.body).removeClass( 'DTTT_Print' );
+		//$(document.body).removeClass( 'sidebar-collapse' );
+		$(document.body).removeClass( this.classes.print.body );
+
+		// TAMBAHAN
+		var listP = document.getElementsByClassName("dataTables_processing");
+		var ulang;
+		for (ulang = 0; ulang < listP.length; ulang++) {
+		  listP[ulang].style.display = "none";
+		}
 
 		/* Restore the table length */
 		oSetDT._iDisplayStart = oSetPrint.saveStart;

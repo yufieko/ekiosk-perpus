@@ -73,7 +73,7 @@
     <!-- CK Editor -->
     <script src="<?=base_url('public/plugins/ckeditor/ckeditor.js');?>"></script>
     <!-- Bootstrap WYSIHTML5 -->
-    <script src="<?=base_url('public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js');?>" type="text/javascript"></script>
+    <!-- <script src="<?=base_url('public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js');?>" type="text/javascript"></script> -->
     <!-- Sparkline -->
     <script src="<?=base_url('public/plugins/sparkline/jquery.sparkline.min.js');?>" type="text/javascript"></script>
     <!-- jQuery Knob Chart -->
