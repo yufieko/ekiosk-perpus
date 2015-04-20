@@ -168,7 +168,7 @@
     </div><!-- ./wrapper -->
 
     <!-- Modal Tambah Buku -->
-    <div class="modal modal-primary fade" id="modal-tambah-buku" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal modal-primary fade" id="modal-tambah-buku" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -177,7 +177,7 @@
           </div>
           <div class="modal-body">
             <div class="container-fluid">
-              <span id="form-pesan-tambah"></span>
+              <span id="form-pesan-tambah-buku"></span>
               <?php echo form_open_multipart('buku/tambah', 'id="form-tambah-buku"') ?>
                 <div class="row">
                   <div class="col-xs-7">
@@ -288,8 +288,8 @@
     <!-- Modal Tambah Buku -->
 
     <!-- Modal Tambah Jenis -->
-    <div class="modal modal-primary fade" id="modal-tambah-jenis" tabindex="-1" role="dialog" data-backdrop="static">
-      <div class="modal-dialog modal-sm">
+    <div class="modal modal-primary fade" id="modal-tambah-jenis" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -297,7 +297,7 @@
           </div>
           <div class="modal-body">
             <div class="container-fluid">
-              <span id="form-pesan-tambah"></span>
+              <span id="form-pesan-tambah-jenis"></span>
               <?php echo form_open('jenis/tambah', 'id="form-tambah-jenis"') ?>
                 <div class="row">
                   <div class="col-xs-12">
@@ -322,8 +322,8 @@
     <!-- Modal Tambah Jenis -->
 
     <!-- Modal Tambah Koleksi -->
-    <div class="modal modal-primary fade" id="modal-tambah-koleksi" tabindex="-1" role="dialog" data-backdrop="static">
-      <div class="modal-dialog modal-sm">
+    <div class="modal modal-primary fade" id="modal-tambah-koleksi" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -331,7 +331,7 @@
           </div>
           <div class="modal-body">
             <div class="container-fluid">
-              <span id="form-pesan-tambah"></span>
+              <span id="form-pesan-tambah-koleksi"></span>
               <?php echo form_open('koleksi/tambah', 'id="form-tambah-koleksi"') ?>
                 <div class="row">
                   <div class="col-xs-12">
@@ -356,7 +356,7 @@
     <!-- Modal Tambah Koleksi -->
 
     <!-- Modal Edit Buku  -->
-    <div class="modal modal-primary fade" id="modal-edit-buku" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal modal-primary fade" id="modal-edit-buku" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -365,7 +365,7 @@
           </div>
           <div class="modal-body">
             <div class="box-body table-responsive">
-              <span id="form-pesan-edit"></span>
+              <span id="form-pesan-edit-buku"></span>
               <?php echo form_open_multipart('buku/edit', 'id="form-edit-buku"') ?>
               <div class="box-body">
                 <div class="row">
@@ -475,8 +475,8 @@
     <!-- Modal Edit Buku -->
 
     <!-- Modal Edit Jenis -->
-    <div class="modal modal-primary fade" id="modal-edit-jenis" tabindex="-1" role="dialog" data-backdrop="static">
-      <div class="modal-dialog modal-sm">
+    <div class="modal modal-primary fade" id="modal-edit-jenis" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -484,7 +484,7 @@
           </div>
           <div class="modal-body">
             <div class="container-fluid">
-              <span id="form-pesan-edit"></span>
+              <span id="form-pesan-edit-jenis"></span>
               <?php echo form_open('jenis/edit', 'id="form-edit-jenis"') ?>
                 <div class="row">
                   <div class="col-xs-12">
@@ -510,8 +510,8 @@
     <!-- Modal Edit Jenis -->
 
     <!-- Modal Edit Koleksi -->
-    <div class="modal modal-primary fade" id="modal-edit-koleksi" tabindex="-1" role="dialog" data-backdrop="static">
-      <div class="modal-dialog modal-sm">
+    <div class="modal modal-primary fade" id="modal-edit-koleksi" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -519,7 +519,7 @@
           </div>
           <div class="modal-body">
             <div class="container-fluid">
-              <span id="form-pesan-edit"></span>
+              <span id="form-pesan-edit-koleksi"></span>
               <?php echo form_open('koleksi/edit', 'id="form-edit-koleksi"') ?>
                 <div class="row">
                   <div class="col-xs-12">
@@ -545,15 +545,15 @@
     <!-- Modal Edit Koleksi -->
 
     <!-- Modal Hapus Buku -->
-    <div class="modal modal-danger fade" id="modal-hapus-buku" tabindex="-1" role="dialog" data-backdrop="static">
-      <div class="modal-dialog modal-sm">
+    <div class="modal modal-danger fade" id="modal-hapus-buku" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title"><i class="fa fa-book"></i> Hapus Data Buku </h4>
           </div>
           <div class="modal-body">
-            <span id="form-pesan-hapus"></span>
+            <span id="form-pesan-hapus-buku"></span>
             <?php echo form_open('buku/hapus', 'id="form-hapus-buku"') ?>
             <div class="box-body">
               <div class="row">
@@ -581,15 +581,15 @@
     <!-- Modal Hapus Buku -->
 
     <!-- Modal Hapus Jenis -->
-    <div class="modal modal-danger fade" id="modal-hapus-jenis" tabindex="-1" role="dialog" data-backdrop="static">
-      <div class="modal-dialog modal-sm">
+    <div class="modal modal-danger fade" id="modal-hapus-jenis" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title"><i class="fa fa-book"></i> Hapus Data Jenis </h4>
           </div>
           <div class="modal-body">
-            <span id="form-pesan-hapus"></span>
+            <span id="form-pesan-hapus-jenis"></span>
             <?php echo form_open('jenis/hapus', 'id="form-hapus-jenis"') ?>
             <div class="box-body">
               <div class="row">
@@ -616,15 +616,15 @@
     <!-- Modal Hapus Jenis -->
 
     <!-- Modal Hapus Koleksi -->
-    <div class="modal modal-danger fade" id="modal-hapus-koleksi" tabindex="-1" role="dialog" data-backdrop="static">
-      <div class="modal-dialog modal-sm">
+    <div class="modal modal-danger fade" id="modal-hapus-koleksi" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title"><i class="fa fa-book"></i> Hapus Data Koleksi </h4>
           </div>
           <div class="modal-body">
-            <span id="form-pesan-hapus"></span>
+            <span id="form-pesan-hapus-koleksi"></span>
             <?php echo form_open('koleksi/hapus', 'id="form-hapus-koleksi"') ?>
             <div class="box-body">
               <div class="row">
@@ -667,17 +667,14 @@
         refresh_jumlah();
 
         $('#btn-tambah-buku').click(function(){
-            $('#form-pesan-tambah').html('');
             $('#modal-tambah-buku').modal('show');
         });
 
         $('#btn-tambah-jenis').click(function(){
-            $('#form-pesan-tambah').html('');
             $('#modal-tambah-jenis').modal('show');
         });
 
         $('#btn-tambah-koleksi').click(function(){
-            $('#form-pesan-tambah').html('');
             $('#modal-tambah-koleksi').modal('show');
         });
 
@@ -974,13 +971,13 @@
                 success:function(respon){
                     var obj = $.parseJSON(respon);
                     if(obj.status==1){
-                        $('#form-pesan-tambah').html(pesan_succ(obj.pesan));
-                        setTimeout(function(){$('#form-pesan-tambah').html('')}, 5000);
+                        $('#form-pesan-tambah-buku').html(pesan_succ(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-tambah-buku').html('')}, 5000);
                         setTimeout(function(){$('#modal-tambah-buku').modal('hide')}, 2500);
-                        setTimeout(function(){ refresh_jumlah(); tblbuku.ajax.reload(); }, 2500);
+                        setTimeout(function(){ refresh_jumlah(); tblbuku.ajax.reload( null, false ); }, 2500);
                     }else{
-                        $('#form-pesan-tambah').html(pesan_err(obj.pesan));
-                        setTimeout(function(){$('#form-pesan-tambah').html('')}, 7000);
+                        $('#form-pesan-tambah-buku').html(pesan_err(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-tambah-buku').html('')}, 7000);
                     }
                     
                     $('#btn-simpan-buku').removeClass('disabled');
@@ -997,13 +994,13 @@
                 success:function(respon){
                     var obj = $.parseJSON(respon);
                     if(obj.status==1){
-                        $('#form-pesan-tambah').html(pesan_succ(obj.pesan));
-                        setTimeout(function(){$('#form-pesan-tambah').html('')}, 5000);
+                        $('#form-pesan-tambah-jenis').html(pesan_succ(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-tambah-jenis').html('')}, 5000);
                         setTimeout(function(){$('#modal-tambah-jenis').modal('hide')}, 2500); 
-                        setTimeout(function(){ refresh_jumlah(); tbljenis.ajax.reload(); }, 2500); 
+                        setTimeout(function(){ refresh_jumlah(); tbljenis.ajax.reload( null, false ); }, 2500); 
                     }else{
-                        $('#form-pesan-tambah').html(pesan_err(obj.pesan));
-                        setTimeout(function(){$('#form-pesan-tambah').html('')}, 7000);
+                        $('#form-pesan-tambah-jenis').html(pesan_err(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-tambah-jenis').html('')}, 7000);
                     }
                     
                     $('#btn-simpan-jenis').removeClass('disabled'); }
@@ -1019,13 +1016,13 @@
                 success:function(respon){
                     var obj = $.parseJSON(respon);
                     if(obj.status==1){
-                        $('#form-pesan-tambah').html(pesan_succ(obj.pesan));
-                        setTimeout(function(){$('#form-pesan-tambah').html('')}, 5000);
+                        $('#form-pesan-tambah-koleksi').html(pesan_succ(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-tambah-koleksi').html('')}, 5000);
                         setTimeout(function(){$('#modal-tambah-koleksi').modal('hide')}, 2500); 
-                        setTimeout(function(){ refresh_jumlah(); tblkoleksi.ajax.reload(); }, 2500); 
+                        setTimeout(function(){ refresh_jumlah(); tblkoleksi.ajax.reload( null, false ); }, 2500); 
                     }else{
-                        $('#form-pesan-tambah').html(pesan_err(obj.pesan));
-                        setTimeout(function(){$('#form-pesan-tambah').html('')}, 7000);
+                        $('#form-pesan-tambah-koleksi').html(pesan_err(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-tambah-koleksi').html('')}, 7000);
                     }
                     
                     $('#btn-simpan-koleksi').removeClass('disabled'); }
@@ -1052,13 +1049,13 @@
                 success:function(respon){
                     var obj = $.parseJSON(respon);
                     if(obj.status==1){
-                        $('#form-pesan-edit').html(pesan_succ(obj.pesan));
-                        setTimeout(function(){$('#form-pesan-edit').html('')}, 5000);
+                        $('#form-pesan-edit-buku').html(pesan_succ(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-edit-buku').html('')}, 5000);
                         setTimeout(function(){$('#modal-edit-buku').modal('hide')}, 2500);
-                        setTimeout(function(){ refresh_jumlah(); tblbuku.ajax.reload(); }, 2500);
+                        setTimeout(function(){ refresh_jumlah(); tblbuku.ajax.reload( null, false ); }, 2500);
                     }else{
-                        $('#form-pesan-edit').html(pesan_err(obj.pesan));
-                        setTimeout(function(){$('#form-pesan-edit').html('')}, 7000);
+                        $('#form-pesan-edit-buku').html(pesan_err(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-edit-buku').html('')}, 7000);
                     }
                     
                     $('#btn-edit-buku').removeClass('disabled');
@@ -1076,16 +1073,40 @@
                 success:function(respon){
                     var obj = $.parseJSON(respon);
                     if(obj.status==1){
-                        $('#form-pesan-edit').html(pesan_succ(obj.pesan));
-                        setTimeout(function(){$('#form-pesan-edit').html('')}, 5000);
+                        $('#form-pesan-edit-jenis').html(pesan_succ(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-edit-jenis').html('')}, 5000);
                         setTimeout(function(){$('#modal-edit-jenis').modal('hide')}, 2500);
-                        setTimeout(function(){ refresh_jumlah(); tbljenis.ajax.reload(); }, 2500);
+                        setTimeout(function(){ refresh_jumlah(); tbljenis.ajax.reload( null, false ); }, 2500);
                     }else{
-                        $('#form-pesan-edit').html(pesan_err(obj.pesan));
-                        setTimeout(function(){$('#form-pesan-edit').html('')}, 7000);
+                        $('#form-pesan-edit-jenis').html(pesan_err(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-edit-jenis').html('')}, 7000);
                     }
                     
                     $('#btn-edit-jenis').removeClass('disabled');
+                }
+            });
+            return false;
+        });
+
+        $('#form-edit-koleksi').submit(function(){
+            $.ajax({
+                url:"<?=site_url('koleksi/edit')?>",
+                type:"POST",
+                data:$('#form-edit-koleksi').serialize(),
+                cache: false,
+                success:function(respon){
+                    var obj = $.parseJSON(respon);
+                    if(obj.status==1){
+                        $('#form-pesan-edit-koleksi').html(pesan_succ(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-edit-koleksi').html('')}, 5000);
+                        setTimeout(function(){$('#modal-edit-koleksi').modal('hide')}, 2500);
+                        setTimeout(function(){ refresh_jumlah(); tblkoleksi.ajax.reload( null, false ); }, 2500);
+                    }else{
+                        $('#form-pesan-edit-koleksi').html(pesan_err(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-edit-koleksi').html('')}, 7000);
+                    }
+                    
+                    $('#btn-edit-koleksi').removeClass('disabled');
                 }
             });
             return false;
@@ -1100,16 +1121,64 @@
                 success:function(respon){
                     var obj = $.parseJSON(respon);
                     if(obj.status==1){
-                        $('#form-pesan-hapus').html(pesan_succ(obj.pesan));
-                        setTimeout(function(){$('#form-pesan-hapus').html('')}, 5000);
+                        $('#form-pesan-hapus-buku').html(pesan_succ(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-hapus-buku').html('')}, 5000);
                         setTimeout(function(){$('#modal-hapus-buku').modal('hide')}, 2500);
-                        setTimeout(function(){ refresh_jumlah(); tblbuku.ajax.reload(); }, 2500);
+                        setTimeout(function(){ refresh_jumlah(); tblbuku.ajax.reload( null, false ); }, 2500);
                     }else{
-                        $('#form-pesan-hapus').html(pesan_err(obj.pesan));
-                        setTimeout(function(){$('#form-pesan-hapus').html('')}, 7000);
+                        $('#form-pesan-hapus-buku').html(pesan_err(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-hapus-buku').html('')}, 7000);
                     }
                     
                     $('#btn-hapus-buku').removeClass('disabled');
+                }
+            });
+            return false;
+        });
+
+        $('#form-hapus-jenis').submit(function(){
+            $.ajax({
+                url:"<?=site_url('jenis/hapus')?>",
+                type:"POST",
+                data:$('#form-hapus-jenis').serialize(),
+                cache: false,
+                success:function(respon){
+                    var obj = $.parseJSON(respon);
+                    if(obj.status==1){
+                        $('#form-pesan-hapus-jenis').html(pesan_succ(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-hapus-jenis').html('')}, 5000);
+                        setTimeout(function(){$('#modal-hapus-jenis').modal('hide')}, 2500);
+                        setTimeout(function(){ refresh_jumlah(); tbljenis.ajax.reload( null, false ); }, 2500);
+                    }else{
+                        $('#form-pesan-hapus-jenis').html(pesan_err(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-hapus-jenis').html('')}, 7000);
+                    }
+                    
+                    $('#btn-hapus-jenis').removeClass('disabled');
+                }
+            });
+            return false;
+        });
+
+        $('#form-hapus-koleksi').submit(function(){
+            $.ajax({
+                url:"<?=site_url('koleksi/hapus')?>",
+                type:"POST",
+                data:$('#form-hapus-koleksi').serialize(),
+                cache: false,
+                success:function(respon){
+                    var obj = $.parseJSON(respon);
+                    if(obj.status==1){
+                        $('#form-pesan-hapus-koleksi').html(pesan_succ(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-hapus-koleksi').html('')}, 5000);
+                        setTimeout(function(){$('#modal-hapus-koleksi').modal('hide')}, 2500);
+                        setTimeout(function(){ refresh_jumlah(); tblkoleksi.ajax.reload( null, false ); }, 2500);
+                    }else{
+                        $('#form-pesan-hapus-koleksi').html(pesan_err(obj.pesan));
+                        setTimeout(function(){$('#form-pesan-hapus-koleksi').html('')}, 7000);
+                    }
+                    
+                    $('#btn-hapus-koleksi').removeClass('disabled');
                 }
             });
             return false;
