@@ -9,13 +9,14 @@ class Koran extends MY_Controller {
         $this->load->model('berkas_model');
     }
 
-	public function getberkas() {
+	public function getkoran() {
         $this->load->library('Datatables');
 
-        $select = "b.berkas_id,u.user_login,b.berkas_pesan,b.berkas_waktu,"
+        $select = "b.berkas_id,u.user_login,b.berkas_pesan,b.berkas_waktu,b.berkas_download,"
         		. "REPLACE(REPLACE(`b`.`berkas_status`,'0','Draft'),'1','Publish') AS Bstatus";
-        $opsi = '<button class="btn btn-xs btn-flat btn-primary" data-toggle="modal" data-target="#modal-edit-berkas" data-id="'.utf8_encode('$1').'" data-title="Berkas" title="Edit Data"><i class="fa fa-pencil"></i></button>'
-        		. ' <button class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#modal-hapus-berkas" data-id="'.utf8_encode('$1').'" data-title="Berkas" title="Hapus Data"><i class="fa fa-close"></i></button>';
+        $opsi = ' <button class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#modal-download-koran" data-id="'.utf8_encode('$1').'" data-title="Koran" title="Download Data"><i class="fa fa-download"></i></button>'
+                . ' <button class="btn btn-xs btn-flat btn-primary" data-toggle="modal" data-target="#modal-edit-koran" data-id="'.utf8_encode('$1').'" data-title="Koran" title="Edit Data"><i class="fa fa-pencil"></i></button>'
+        		. ' <button class="btn btn-xs btn-flat btn-danger" data-toggle="modal" data-target="#modal-hapus-koran" data-id="'.utf8_encode('$1').'" data-title="Koran" title="Hapus Data"><i class="fa fa-close"></i></button>';
         $this->datatables->select($select)
         	->add_column('Bopsi', $opsi, 'berkas_id')
         	->from('tb_berkas b')
@@ -25,7 +26,7 @@ class Koran extends MY_Controller {
         echo $this->datatables->generate();
 	}
 
-    public function getberkaswith($id) {
+    public function getkoranwith($id) {
         $data = $this->berkas_model->select(array('berkas_id' => utf8_decode($id)));
         $result = array();
         foreach ($data->result() as $key => $value) {
@@ -34,11 +35,23 @@ class Koran extends MY_Controller {
         echo json_encode($result);
     }
 
+    public function download($id){
+        $this->load->helper('download');
+        $data = $this->berkas_model->select(array("berkas_id" => utf8_decode($id)))->row();
+        $path = $_SERVER['DOCUMENT_ROOT'].'/public/koran/' . $data->berkas_nama;
+        $this->increment_download($id, $data->berkas_download);
+        force_download($path, NULL);
+    }
+
+    public function increment_download($id, $count = 0) {
+        $this->berkas_model->update($this->tabel, $id, array('berkas_download' => $count + 1));
+    }
+
     public function get_databox() {
         // data buat box
         $data['boxtotal'] = $this->berkas_model->get_total();
         $data['boxpublish'] = $this->berkas_model->get_total(array('berkas_status' => 1));
-        $data['boxdraft'] = $this->berkas_model->get_total(array('berkas_status' => 1));
+        $data['boxdraft'] = $this->berkas_model->get_total(array('berkas_status' => 0));
         $data['boxdownload'] = $this->berkas_model->get_totaldownload();
 
         echo json_encode($data);
@@ -57,26 +70,20 @@ class Koran extends MY_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('tambah-judul', 'Judul','trim|required|strip_tags|min_length[5]');
         $this->form_validation->set_rules('tambah-status', 'Status','trim|required|strip_tags');
-        $this->form_validation->set_rules('tambah-koran', 'Koran','trim|required|strip_tags');
 
         if($this->form_validation->run() == TRUE){
             //$stringURL = str_replace(' ', '-', strtolower(addslashes($this->input->post('tambah-judul', TRUE)))); // Converts spaces to dashes
             if($_FILES['tambah-koran']['size'] == 0) {
-                $data = array(
-                    'user_id' => $this->user_model->user_id();
-                    'berkas_pesan' => htmlentities($this->input->post('tambah-judul', TRUE)),
-                    'berkas_status' => addslashes($this->input->post('tambah-status', TRUE))
-                );
-
-                $this->berkas_model->insert($this->tabel, $data);
+                $this->form_validation->set_rules('tambah-koran', 'Koran','required');
             } else {
                 if (!$this->upload->do_upload('tambah-koran')) {
                     $status['status'] = 0;
                     $status['pesan'] = $this->upload->display_errors();
                 } else {
                     $data = array(
-                        'user_id' => $this->user_model->user_id();
-                        'berkas_pesan' => htmlentities($this->input->post('tambah-judul', TRUE)),
+                        'user_id' => $this->user_model->user_id(),
+                        //'berkas_pesan' => htmlentities($this->input->post('tambah-judul', TRUE)),
+                        'berkas_pesan' => $this->upload->data('raw_name'),
                         'berkas_status' => addslashes($this->input->post('tambah-status', TRUE)),
                         'berkas_nama' => $this->upload->data('file_name')
                     );
@@ -111,7 +118,7 @@ class Koran extends MY_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('edit-judul', 'Judul','trim|required|strip_tags|min_length[5]');
         $this->form_validation->set_rules('edit-status', 'Status','trim|required|strip_tags');
-        $this->form_validation->set_rules('edit-id', 'ID Buku','trim|required|strip_tags|is_natural_no_zero');
+        $this->form_validation->set_rules('edit-id', 'ID Koran','trim|required|strip_tags|is_natural_no_zero');
 
         if($this->form_validation->run() == TRUE){
             $id = addslashes($this->input->post('edit-id', TRUE));
