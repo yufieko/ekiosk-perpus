@@ -172,7 +172,7 @@ class Buku extends MY_Controller {
                     'buku_status' => addslashes($this->input->post('edit-status', TRUE))
                 );
 
-                //$this->buku_model->update($this->tabel, $id, $data);
+                $this->buku_model->update($this->tabel, $id, $data);
             } else {
                 if (!$this->upload->do_upload('edit-gambar')) {
                     $status['status'] = 0;
