@@ -36,7 +36,7 @@ class Buku extends MY_Controller {
     public function getbukuwith($id) {
         $data = $this->buku_model->select(array('buku_id' => utf8_decode($id)));
         $result = array();
-        foreach ($data as $key => $value) {
+        foreach ($data->result() as $key => $value) {
             $result = $value;
         }
         echo json_encode($result);

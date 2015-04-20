@@ -10,6 +10,9 @@ class Dashboard extends MY_Controller {
         // load model
         $this->load->model('hak_model');
         $this->load->model('web_model');
+        $this->load->model('log_model');
+        $this->load->model('buku_model');
+        $this->load->model('berkas_model');
 
         // data header
 		$this->datah['menu'] = $this->user_model->get_menu($this->user_model->get_roleid());
@@ -18,12 +21,18 @@ class Dashboard extends MY_Controller {
 			'parent' => '#parent-' . ( $this->router->method == 'index' ? $this->router->class : $this->router->method ),
 			'child' => '');
 		$this->datah['menudesk'] = $this->hak_model->select(array('akses_nama' => strtolower($this->datah['title']) ), 1);
+		$this->datah['daftarlog'] = $this->log_model->select(array(), 6);
+		$this->datah['boxlognotif'] = $this->log_model->get_total(array('log_status' => 0));
 
 		// data content
 		$this->data['web'] = $this->web_model->select();
     }
 
 	public function index() {
+		$this->data['daftarlog'] = $this->log_model->select(array(), 4);
+		$this->data['daftarkoran'] = $this->berkas_model->select(array(), 4);
+		$this->data['daftarbuku'] = $this->buku_model->select(array(), 4);
+
 		$this->load->view('Backend/header_view', $this->datah);
 		$this->load->view('Backend/dashboard_view', $this->data);
 	}
@@ -78,5 +87,15 @@ class Dashboard extends MY_Controller {
 		$this->session->set_userdata('perpus_pesan_sukses', "Session Anda berhasil diakhiri");
 		redirect('login');
 	}
+
+	public function get_databox() {
+        // data buat box
+        $data['boxlog'] = $this->log_model->get_total();
+        $data['boxbuku'] = $this->buku_model->get_totalbuku();
+        $data['boxkoran'] = $this->berkas_model->get_total();
+        $data['boxdownload'] = $this->berkas_model->get_totaldownload();
+
+        echo json_encode($data);
+    }
 
 }
