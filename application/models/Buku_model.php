@@ -73,11 +73,13 @@ class Buku_model extends CI_Model {
 
     function select($data, $no = 0) {
         $this->db->select('*')
-            ->from('tb_buku')
+            ->from('tb_buku b')
+            ->join('tb_jenis j', 'b.jenis_id = j.jenis_id')
             ->where($data)
+            ->order_by('buku_id', 'DESC')
             ->limit($no);
         $query = $this->db->get();
-        return ($query->num_rows() > 0 ? $query->result() : NULL);
+        return ($query->num_rows() > 0 ? $query : NULL);
     }
 
     function selectJenis($data, $no = 0) {

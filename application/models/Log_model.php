@@ -43,6 +43,7 @@ class Log_model extends CI_Model {
         $this->db->select('*')
             ->from('tb_log')
             ->where($data)
+            ->order_by('log_id', 'DESC')
             ->limit($no);
         $query = $this->db->get();
         return ($query->num_rows() > 0 ? $query : NULL);

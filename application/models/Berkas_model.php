@@ -43,6 +43,7 @@ class Berkas_model extends CI_Model {
             ->from('tb_berkas b')
             ->join('tb_user u','b.user_id = u.user_id')
             ->where($data)
+            ->order_by('berkas_id', 'DESC')
             ->limit($no);
         $query = $this->db->get();
         return ($query->num_rows() > 0 ? $query : NULL);
