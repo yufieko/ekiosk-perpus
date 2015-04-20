@@ -120,42 +120,23 @@
               <li class="dropdown notifications-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-bell-o"></i>
-                  <span class="label label-warning">10</span>
+                  <span class="label label-warning" id="boxlognotif"><?php echo $boxlognotif; ?></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li class="header">You have 10 notifications</li>
+                  <li class="header">Anda punya <?php echo $boxlognotif; ?> log yang belum dibaca</li>
                   <li>
                     <!-- inner menu: contains the actual data -->
                     <ul class="menu">
+                      <?php if(!empty($daftarlog)) { foreach ($daftarlog->result() as $key) { ?>
                       <li>
                         <a href="#">
-                          <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                          <i class="fa fa-warning text-yellow"></i> <?php echo substr($key->log_isi, 0, 30) . "..."; ?>
                         </a>
                       </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the page and may cause design problems
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-users text-red"></i> 5 new members joined
-                        </a>
-                      </li>
-
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa fa-user text-red"></i> You changed your username
-                        </a>
-                      </li>
+                      <?php } } ?>
                     </ul>
                   </li>
-                  <li class="footer"><a href="#">Lihat Semua</a></li>
+                  <li class="footer"><a href="<?=site_url('dashboard/log')?>">Lihat Semua</a></li>
                 </ul>
               </li>
               <!-- User Account: style can be found in dropdown.less -->
