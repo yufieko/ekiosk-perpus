@@ -1389,6 +1389,19 @@ class User_model extends CI_Model {
         return $token;
     }
 
+    function list_menu($role) {
+            $this->db->select('tb_menu.menu_akses, tb_menu.menu_id');
+            $this->db->join('tb_hakakses', 'tb_hakakses.akses_id = tb_roleakses.akses_id');
+            $this->db->join('tb_menu', 'tb_menu.menu_akses = tb_hakakses.akses_nama');
+            $this->db->where('tb_roleakses.role_id', $role);
+            $this->db->where('tb_menu.menu_aktif', 1);
+            $this->db->order_by('tb_menu.menu_urutan');
+            $result = $this->db->get('tb_roleakses');
+
+            return ( $result->num_rows() > 0 ? $result : NULL );
+
+    }
+
     function get_menu($role) {
             //$select = 'tb_menu.*, , privileges.description AS privilege_description, '
             //        . 'privileges.privilege_id AS privilege_id';
