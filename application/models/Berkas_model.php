@@ -18,7 +18,7 @@ class Berkas_model extends CI_Model {
     }
 
     function get_totaldownload() {
-        $this->db->select('SUM(berkas_download) AS Jumlah')
+        $this->db->select('IFNULL(SUM(berkas_download), "0") AS Jumlah')
             ->from('tb_berkas');
         $query = $this->db->get();
         return ($query->num_rows() > 0 ? $query->row()->Jumlah : 0);
@@ -29,12 +29,12 @@ class Berkas_model extends CI_Model {
     }
 
     function delete($tabel = 'tb_berkas', $id) {
-        $this->db->where($primaryKey, $id)
+        $this->db->where('berkas_id', $id)
             ->delete($tabel);
     }
 
     function update($tabel = 'tb_berkas', $id, $data) {
-        $this->db->where($primaryKey, $id)
+        $this->db->where('berkas_id', $id)
             ->update($tabel, $data);
     }
 
