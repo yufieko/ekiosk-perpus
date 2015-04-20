@@ -43,6 +43,7 @@ class Koleksi extends MY_Controller {
             );
 
             $this->buku_model->insert($this->tabel, $data);
+            $this->logpush->insert($this->router->class, "menambahkan koleksi baru '" . $data['koleksi_nama'] . "'");
             $status['status'] = 1;
             $status['pesan'] = 'Koleksi baru berhasil ditambahkan';
         }else{
@@ -65,6 +66,7 @@ class Koleksi extends MY_Controller {
             );
 
             $this->buku_model->update($this->tabel, $id, $data);
+            $this->logpush->insert($this->router->class, "mengganti koleksi '" . $data['koleksi_nama'] . "'");
             $status['status'] = 1;
             $status['pesan'] = 'Data Koleksi berhasil diperbarui';
         }else{
@@ -84,7 +86,8 @@ class Koleksi extends MY_Controller {
             $id = addslashes($this->input->post('hapus-id', TRUE));
             $koleksi = addslashes($this->input->post('hapus-koleksi', TRUE));
 
-            //$this->buku_model->delete($this->tabel, $id);
+            $this->buku_model->delete($this->tabel, $id);
+            $this->logpush->insert($this->router->class, "menghapus koleksi '" . $koleksi . "'");
             $status['status'] = 1;
             $status['pesan'] = 'Koleksi "' . $koleksi . '" berhasil dihapus';
         }else{

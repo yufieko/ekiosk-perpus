@@ -43,6 +43,7 @@ class Jenis extends MY_Controller {
             );
 
             $this->buku_model->insert($this->tabel, $data);
+            $this->logpush->insert($this->router->class, "menambahkan jenis baru '" . $data['jenis_teks'] . "'");
             $status['status'] = 1;
             $status['pesan'] = 'Jenis baru berhasil ditambahkan';
         }else{
@@ -61,10 +62,11 @@ class Jenis extends MY_Controller {
         if($this->form_validation->run() == TRUE){
             $id = addslashes($this->input->post('edit-id', TRUE));
             $data = array(
-                'jenis_teks' => addslashes($this->input->post('tambah-jenis', TRUE))
+                'jenis_teks' => addslashes($this->input->post('edit-jenis', TRUE))
             );
 
             $this->buku_model->update($this->tabel, $id, $data);
+            $this->logpush->insert($this->router->class, "mengganti jenis '" . $data['jenis_teks'] . "'");
             $status['status'] = 1;
             $status['pesan'] = 'Data jenis berhasil diperbarui';
         }else{
@@ -84,7 +86,8 @@ class Jenis extends MY_Controller {
             $id = addslashes($this->input->post('hapus-id', TRUE));
             $jenis = addslashes($this->input->post('hapus-jenis', TRUE));
 
-            //$this->buku_model->delete($this->tabel, $id);
+            $this->buku_model->delete($this->tabel, $id);
+            $this->logpush->insert($this->router->class, "menghapus jenis '" . $jenis . "'");
             $status['status'] = 1;
             $status['pesan'] = 'Jenis "' . $jenis . '" berhasil dihapus';
         }else{

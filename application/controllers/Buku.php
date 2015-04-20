@@ -79,7 +79,7 @@ class Buku extends MY_Controller {
             //$stringURL = str_replace(' ', '-', strtolower(addslashes($this->input->post('tambah-judul', TRUE)))); // Converts spaces to dashes
             if($_FILES['tambah-gambar']['size'] == 0) {
                 $data = array(
-                    'buku_judul' => addslashes($this->input->post('tambah-judul', TRUE)),
+                    'buku_judul' => htmlentities($this->input->post('tambah-judul', TRUE)),
                     'buku_penulis' => addslashes($this->input->post('tambah-penulis', TRUE)),
                     'buku_penerbit' => addslashes($this->input->post('tambah-penerbit', TRUE)),
                     'buku_tahun' => addslashes($this->input->post('tambah-tahun', TRUE)),
@@ -87,7 +87,7 @@ class Buku extends MY_Controller {
                     'jenis_id' => addslashes($this->input->post('tambah-jenis', TRUE)),
                     'koleksi_id' => addslashes($this->input->post('tambah-koleksi', TRUE)),
                     'buku_letak' => addslashes($this->input->post('tambah-letak', TRUE)),
-                    'buku_deskripsi' => addslashes($this->input->post('tambah-teks', TRUE)),
+                    'buku_deskripsi' => htmlentities($this->input->post('tambah-teks', TRUE)),
                     'buku_jumlah' => addslashes($this->input->post('tambah-jumlah', TRUE)),
                     'buku_status' => addslashes($this->input->post('tambah-status', TRUE))
                 );
@@ -99,7 +99,7 @@ class Buku extends MY_Controller {
                     $status['pesan'] = $this->upload->display_errors();
                 } else {
                     $data = array(
-                        'buku_judul' => addslashes($this->input->post('tambah-judul', TRUE)),
+                        'buku_judul' => htmlentities($this->input->post('tambah-judul', TRUE)),
                         'buku_penulis' => addslashes($this->input->post('tambah-penulis', TRUE)),
                         'buku_penerbit' => addslashes($this->input->post('tambah-penerbit', TRUE)),
                         'buku_tahun' => addslashes($this->input->post('tambah-tahun', TRUE)),
@@ -107,7 +107,7 @@ class Buku extends MY_Controller {
                         'jenis_id' => addslashes($this->input->post('tambah-jenis', TRUE)),
                         'koleksi_id' => addslashes($this->input->post('tambah-koleksi', TRUE)),
                         'buku_letak' => addslashes($this->input->post('tambah-letak', TRUE)),
-                        'buku_deskripsi' => addslashes($this->input->post('tambah-teks', TRUE)),
+                        'buku_deskripsi' => htmlentities($this->input->post('tambah-teks', TRUE)),
                         'buku_jumlah' => addslashes($this->input->post('tambah-jumlah', TRUE)),
                         'buku_status' => addslashes($this->input->post('tambah-status', TRUE)),
                         'buku_gambar' => $this->upload->data('file_name')
@@ -121,6 +121,10 @@ class Buku extends MY_Controller {
         }else{
             $status['status'] = 0;
             $status['pesan'] = validation_errors();
+        }
+
+        if($status['status'] == 1) {
+            $this->logpush->insert($this->router->class, "menambahkan buku baru '" . $data['buku_judul'] . "'");
         }
 
         echo json_encode($status);
@@ -155,7 +159,7 @@ class Buku extends MY_Controller {
             //$stringURL = str_replace(' ', '-', strtolower(addslashes($this->input->post('edit-judul', TRUE)))); // Converts spaces to dashes
             if($_FILES['edit-gambar']['size'] == 0) {
                 $data = array(
-                    'buku_judul' => addslashes($this->input->post('edit-judul', TRUE)),
+                    'buku_judul' => htmlentities($this->input->post('edit-judul', TRUE)),
                     'buku_penulis' => addslashes($this->input->post('edit-penulis', TRUE)),
                     'buku_penerbit' => addslashes($this->input->post('edit-penerbit', TRUE)),
                     'buku_tahun' => addslashes($this->input->post('edit-tahun', TRUE)),
@@ -163,19 +167,19 @@ class Buku extends MY_Controller {
                     'jenis_id' => addslashes($this->input->post('edit-jenis', TRUE)),
                     'koleksi_id' => addslashes($this->input->post('edit-koleksi', TRUE)),
                     'buku_letak' => addslashes($this->input->post('edit-letak', TRUE)),
-                    'buku_deskripsi' => addslashes($this->input->post('edit-teks', TRUE)),
+                    'buku_deskripsi' => htmlentities($this->input->post('edit-teks', TRUE)),
                     'buku_jumlah' => addslashes($this->input->post('edit-jumlah', TRUE)),
                     'buku_status' => addslashes($this->input->post('edit-status', TRUE))
                 );
 
-                $this->buku_model->update($this->tabel, $id, $data);
+                //$this->buku_model->update($this->tabel, $id, $data);
             } else {
                 if (!$this->upload->do_upload('edit-gambar')) {
                     $status['status'] = 0;
                     $status['pesan'] = $this->upload->display_errors();
                 } else {
                     $data = array(
-                        'buku_judul' => addslashes($this->input->post('edit-judul', TRUE)),
+                        'buku_judul' => htmlentities($this->input->post('edit-judul', TRUE)),
                         'buku_penulis' => addslashes($this->input->post('edit-penulis', TRUE)),
                         'buku_penerbit' => addslashes($this->input->post('edit-penerbit', TRUE)),
                         'buku_tahun' => addslashes($this->input->post('edit-tahun', TRUE)),
@@ -183,7 +187,7 @@ class Buku extends MY_Controller {
                         'jenis_id' => addslashes($this->input->post('edit-jenis', TRUE)),
                         'koleksi_id' => addslashes($this->input->post('edit-koleksi', TRUE)),
                         'buku_letak' => addslashes($this->input->post('edit-letak', TRUE)),
-                        'buku_deskripsi' => addslashes($this->input->post('edit-teks', TRUE)),
+                        'buku_deskripsi' => htmlentities($this->input->post('edit-teks', TRUE)),
                         'buku_jumlah' => addslashes($this->input->post('edit-jumlah', TRUE)),
                         'buku_status' => addslashes($this->input->post('edit-status', TRUE)),
                         'buku_gambar' => $this->upload->data('file_name')
@@ -199,6 +203,10 @@ class Buku extends MY_Controller {
             $status['pesan'] = validation_errors();
         }
 
+        if($status['status'] == 1) {
+            $this->logpush->insert($this->router->class, "mengubah data buku '" . $data['buku_judul'] . "'");
+        }
+
         echo json_encode($status);
     }
 
@@ -209,9 +217,10 @@ class Buku extends MY_Controller {
 
         if($this->form_validation->run() == TRUE){
             $id = addslashes($this->input->post('hapus-id', TRUE));
-            $judul = addslashes($this->input->post('hapus-judul', TRUE));
+            $judul = htmlentities($this->input->post('hapus-judul', TRUE));
 
             $this->buku_model->delete($this->tabel, $id);
+            $this->logpush->insert($this->router->class, "menghapus data buku '" . $judul . "'");
             $status['status'] = 1;
             $status['pesan'] = 'Buku "' . $judul . '" berhasil dihapus';
         }else{
