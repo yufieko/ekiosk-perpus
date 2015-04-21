@@ -120,6 +120,31 @@ body {
 	top: 250px;
 }
 
+.btn-logout {
+	right: 190px;
+	top: 450px;
+	position: absolute;
+	height: 110px;
+	width: 110px;
+	line-height: 50px;
+	text-align: center;
+	color: #fff;
+	background: #1a8ad3;
+	border: none;
+	border-radius: 20%;
+	padding: 5px;
+
+	-webkit-transition: 250ms all ease-in-out;
+	-moz-transition: 250ms all ease-in-out;
+	-ms-transition: 250ms all ease-in-out;
+	-o-transition: 250ms all ease-in-out;
+	transition: 250ms all ease-in-out;
+}
+
+.btn-logout .fa {
+	font-size: 100px;
+}
+
 .btn-input {
 	height: 50px;
 	width: 50px;
