@@ -40,7 +40,7 @@ class Koran extends MY_Controller {
         $data = $this->berkas_model->select(array("berkas_id" => utf8_decode($id)))->row();
         $path = $_SERVER['DOCUMENT_ROOT'].'/public/koran/' . $data->berkas_nama;
         $this->increment_download($id, $data->berkas_download);
-        //force_download($path, NULL);
+        force_download($path, NULL);
     }
 
     public function increment_download($id, $count = 0) {

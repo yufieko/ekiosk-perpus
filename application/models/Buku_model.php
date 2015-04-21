@@ -75,6 +75,7 @@ class Buku_model extends CI_Model {
         $this->db->select('*')
             ->from('tb_buku b')
             ->join('tb_jenis j', 'b.jenis_id = j.jenis_id')
+            ->join('tb_koleksi k', 'b.koleksi_id = k.koleksi_id')
             ->where($data)
             ->order_by('buku_id', 'DESC')
             ->limit($no);

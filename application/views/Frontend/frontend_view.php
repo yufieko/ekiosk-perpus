@@ -34,10 +34,10 @@
 
 </head>
 <body>
-    <video autoplay poster="<?=base_url('public/video/video_space_cover.jpg');?>" id="bgvid" loop>
+    <video autoplay poster="<?=base_url('public/video/video.jpg');?>" id="bgvid" loop>
       <!-- WCAG general accessibility recommendation is that media such as background video play through only once. Loop turned on for the purposes of illustration; if removed, the end of the video will fade in the same way created by pressing the "Pause" button  -->
-    <source src="<?=base_url('public/video/among_the_stars.webm');?>" type="video/webm">
-    <source src="<?=base_url('public/video/among_the_stars.mp4');?>" type="video/mp4">
+    <!-- <source src="<?=base_url('public/video/computer_typing.webm');?>" type="video/webm"> -->
+    <source src="<?=base_url('public/video/video.mp4');?>" type="video/mp4">
     </video>
     <div class="ekios-base">
         <p>SELAMAT DATANG</p>
@@ -49,10 +49,16 @@
         <img src="<?=base_url('public/frontend/img/map.png');?>" width="100%">
 
         <div class="header">
+            <?php if(empty($this->session->userdata('user_login'))) { ?>
             LOGIN FORM
             <br>
             <span class="subtitles">Untuk akses ekiosk perpustakaan anda harus login.</span>
+            <?php } else { ?>
+            LOGIN STATUS<br>
+            <span class="subtitles">Anda masuk sebagai <?=$this->session->userdata('user_login')?>.</span>
+            <?php } ?>
         </div>
+        <?php if(empty($this->session->userdata('user_login'))) { ?>
         <div class="alert alert-warning alert-dismissable" id="form-pesan-error" style="display:none">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <i class="icon fa fa-warning"></i> <span class="pesan"></span>
@@ -62,11 +68,15 @@
             <i class="icon fa fa-check"></i> <span class="pesan"></span>
         </div>
         <?php echo form_open('login/dologinajax', 'id="form-login"') ?>
-        <button type="button" class="btn-input btn-absolute" data-toggle="tooltip" title="" data-original-title="Lihat Buku"><i class="fa fa-book"></i></button>
+        <button type="button" class="btn-input btn-absolute" data-toggle="tooltip" title="" data-original-title="Lihat Buku" onclick="javascript:location.href='<?=site_url("home/daftar")?>'"><i class="fa fa-book"></i></button>
         <input type="email" class="text-input" name="l_username" required placeholder="username tanpa @student.pens.ac.id">
         <input type="password" class="text-input" name="l_password" required placeholder="password">
         <button type="button" class="btn-input btn-login" id="btn-login" data-toggle="tooltip" title="" data-original-title="Login"><i class="fa fa-sign-in"></i></button>
         <?php echo form_close(); ?> 
+        <?php } else { ?>
+            <button type="button" class="btn-input btn-absolute" data-toggle="tooltip" title="" data-original-title="Lihat Buku" onclick="javascript:location.href='<?=site_url("home/daftar")?>'"><i class="fa fa-book"></i></button>
+            <button type="button" class="btn-logout" id="btn-logout" data-toggle="tooltip" title="" data-original-title="Logout" onclick="javascript:location.href='<?=site_url("home/logout")?>'"><i class="fa fa-sign-out"></i></button>
+        <?php } ?>
         
     </div>
 
@@ -79,7 +89,7 @@
             $('[data-toggle="tooltip"]').tooltip();
             
             //Increment the idle time counter every minute.
-            var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
+            var idleInterval = setInterval(timerIncrement, 5000); // 1 minute
 
             //Zero the idle timer on mouse movement.
             $(this).mousemove(function (e) {
@@ -111,7 +121,7 @@
                     if(obj.status==1){
                         $('#form-pesan-success .pesan').html(obj.pesan);
                         $('#form-pesan-success').show();
-                        setTimeout(function(){ window.location.href = "<?=site_url('home/koran/')?>"; }, 2500); 
+                        setTimeout(function(){ window.location.href = "<?=site_url('home/daftar/')?>"; }, 2500); 
                     }else{
                         $('#form-pesan-error .pesan').html(obj.pesan);
                         $('#form-pesan-error').show();

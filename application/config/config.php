@@ -438,6 +438,7 @@ $config['csrf_exclude_uris'] = array('buku/[a-z]+',
 								'koleksi/[a-z]+',
 								'koran/[a-z]+',
 								'user/[a-z]+',
+								'home/[a-z]+',
 								'log/[a-z]+');
 
 /*
