@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2015 at 12:29 PM
+-- Generation Time: Apr 21, 2015 at 06:37 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `tb_berkas` (
 --
 
 INSERT INTO `tb_berkas` (`berkas_id`, `user_id`, `berkas_download`, `berkas_nama`, `berkas_pesan`, `berkas_waktu`, `berkas_status`) VALUES
-(2, 3, 0, 'jawapos20150313.pdf', 'jawapos20150313', '2015-04-20 10:23:19', 1);
+(2, 3, 10, 'jawapos20150313.pdf', 'jawapos20150313', '2015-04-20 10:23:19', 1);
 
 -- --------------------------------------------------------
 
@@ -120,7 +120,6 @@ INSERT INTO `tb_buku` (`buku_id`, `buku_judul`, `buku_penulis`, `jenis_id`, `kol
 (38, 'Project management one track from start to finish ', 'Joseph Philips', 5, 6, '2003', '2004-04-09 00:00:00', 'L.S30', '-', 'A', 'no_book_image.gif', 2, 1, 1),
 (39, 'Grow your own leader', 'Wiliam c byham , matthem  j paese, Audrey b smith', 5, 6, '2012', '2013-09-08 00:00:00', 'L.S30', '-', 'A', 'no_book_image.gif', 3, 2, 1),
 (40, 'Customer relationship manajement', 'Francis buttle', 5, 6, '2009', '2010-09-05 00:00:00', 'L.S30', '-', 'A', 'no_book_image.gif', 3, 0, 1),
-(41, 'Aku anak sehat', 'ueki', 13, 8, '2015', '2015-04-18 02:43:26', 'A302', 'oke gitu aja', 'upress', 'no_book_image.gif', 5, 0, 1),
 (43, 'Biografi Imam Syafi''i', 'Dr.', 10, 8, '2015', '2015-04-19 16:16:58', 'B.3012', 'biografi imam syafi''i, mujtahid', 'Zaman', 'no_book_image.gif', 5, 0, 1);
 
 -- --------------------------------------------------------
@@ -172,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `tb_ip_attempts` (
 --
 
 INSERT INTO `tb_ip_attempts` (`ip`, `last_failed_attempt`, `number_of_attempts`) VALUES
-('127.0.0.1', '2015-03-29 10:30:48', 0);
+('127.0.0.1', '2015-04-21 08:17:50', 0);
 
 -- --------------------------------------------------------
 
@@ -259,7 +258,7 @@ CREATE TABLE IF NOT EXISTS `tb_log` (
   `log_isi` text,
   `log_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `log_status` smallint(6) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_log`
@@ -278,7 +277,8 @@ INSERT INTO `tb_log` (`log_id`, `menu_id`, `user_id`, `log_isi`, `log_dibuat`, `
 (16, 39, 3, 'User yufieko mengubah data koran ''jawapos20140201''', '2015-04-20 09:58:43', 0),
 (17, 39, 3, 'User yufieko menghapus data koran ''jawapos20140201''', '2015-04-20 10:11:18', 0),
 (18, 39, 3, 'User yufieko menambahkan koran baru ''jawapos20150313''', '2015-04-20 10:23:19', 0),
-(19, 39, 3, 'User yufieko mengubah data koran ''jawapos20150313''', '2015-04-20 10:23:29', 0);
+(19, 39, 3, 'User yufieko mengubah data koran ''jawapos20150313''', '2015-04-20 10:23:29', 0),
+(20, 38, 3, 'User yufieko menghapus data buku ''Aku anak sehat''', '2015-04-21 03:41:05', 0);
 
 -- --------------------------------------------------------
 
@@ -311,7 +311,7 @@ INSERT INTO `tb_menu` (`menu_id`, `menu_tipe`, `menu_parent`, `menu_nama`, `menu
 (40, 0, NULL, 'Berita', 'berita', '/berita', 'fa fa-rss', 6, 1),
 (41, 0, NULL, 'Frontend', 'frontend', '/frontend', 'fa fa-desktop', 7, 1),
 (42, 0, NULL, 'Penelitian', 'penelitian', '/penelitian', 'fa fa-flask', 8, 1),
-(49, 0, NULL, 'Manajemen', 'manajemen', '/manajemen', 'fa fa-gears', 10, 1),
+(49, 0, NULL, 'Manajemen', 'manajemen', '/manajemen', 'fa fa-gears', 10, 0),
 (50, 1, 'manajemen', 'Menu', 'menu', '/manajemen/menu', 'fa fa-bars', 10, 1),
 (51, 1, 'manajemen', 'User', 'user', '/manajemen/user', 'fa fa-users', 10, 1),
 (54, 1, 'manajemen', 'Hak Akses', 'hakakses', '/manajemen/hakakses', 'fa fa-filter', 10, 1),
@@ -417,7 +417,7 @@ CREATE TABLE IF NOT EXISTS `tb_user` (
 INSERT INTO `tb_user` (`user_id`, `role_id`, `user_login`, `user_email`, `user_pass`, `user_status`, `user_dibuat`, `user_lastlogin`, `user_loginattempts`, `user_loginban`, `user_resetpass`, `user_resetpass_date`, `user_emailverf`, `user_emailverf_date`) VALUES
 (3, 70, 'yufieko', 'yufieko@it.student.pens.ac.id', '$2a$08$9dnkL3RE0/.8t1056rnAEOLCOOPNy.S.A2chvr1uvpuzltVRzKLL2', 3, '2015-03-28 05:13:05', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', '$2a$08$zX5LE6puV5/g7q2o3I841eUYl3WT6I7Ah59eFaS3BdRgJ0AKdbNYK', '2015-03-30 17:32:54', '', '0000-00-00 00:00:00'),
 (4, 70, 'admin', 'admin@pens.ac.id', '$2a$08$IBXEyJ39PA/7e1ASDvSK6eFT9XjkZCjSammP2xHLL5zKQCueGUR8W', 0, '2015-03-28 05:26:50', '0000-00-00 00:00:00', 0, '2015-03-29 08:16:30', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(5, 71, 'dosen', 'dosen@pens.ac.id', '$2a$08$XU/l6G7Hf7/mKhpvbp771OnhScyb8AeuNAGb/AsxgKBZcN0kVX28u', 0, '2015-03-28 05:29:12', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00');
+(5, 71, 'dosen', 'dosen@pens.ac.id', '$2a$08$XU/l6G7Hf7/mKhpvbp771OnhScyb8AeuNAGb/AsxgKBZcN0kVX28u', 3, '2015-03-28 05:29:12', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -433,15 +433,16 @@ CREATE TABLE IF NOT EXISTS `tb_web` (
   `web_keyword` varchar(50) NOT NULL,
   `web_footer` varchar(50) NOT NULL,
   `web_tagline` varchar(50) NOT NULL,
-  `web_logo` varchar(50) NOT NULL
+  `web_logo` varchar(50) NOT NULL,
+  `web_video` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_web`
 --
 
-INSERT INTO `tb_web` (`web_domain`, `web_nama`, `web_favicon`, `web_deskripsi`, `web_keyword`, `web_footer`, `web_tagline`, `web_logo`) VALUES
-('http://eperpus.yu.de', 'E-Kiosk Perpustakaan', 'http://eperpus.yu.dev/public/dist/img/favicon.ico', 'E-Kiosk Perpustakaan PENS', 'e-kiosk, perpus, perpustakaan, PENS', 'Copyright © 2015 E-Kiosk Perpustakaan PENS', '', '');
+INSERT INTO `tb_web` (`web_domain`, `web_nama`, `web_favicon`, `web_deskripsi`, `web_keyword`, `web_footer`, `web_tagline`, `web_logo`, `web_video`) VALUES
+('http://eperpus.yu.de', 'E-Kiosk Perpustakaan', 'http://eperpus.yu.dev/public/dist/img/favicon.ico', 'E-Kiosk Perpustakaan PENS', 'e-kiosk, perpus, perpustakaan, PENS', 'Copyright © 2015 E-Kiosk Perpustakaan PENS', '', '', 'video.webm');
 
 --
 -- Indexes for dumped tables
@@ -564,7 +565,7 @@ MODIFY `koleksi_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 -- AUTO_INCREMENT for table `tb_log`
 --
 ALTER TABLE `tb_log`
-MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `tb_menu`
 --
