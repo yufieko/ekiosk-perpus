@@ -10,10 +10,10 @@ projek e-kios perpustakaan untuk mata kuliah workshop aplikasi teknologi informa
 !["preview"](https://raw.githubusercontent.com/yufieko/ekiosk-perpus/master/eperpus-06.png "preview")
 !["preview"](https://raw.githubusercontent.com/yufieko/ekiosk-perpus/master/eperpus-07.png "preview")
 
+# rilis
+v1.0 - 21 April 2015 [Versi 1.0](https://github.com/yufieko/ekiosk-perpus/releases/tag/1.0)
+
 # memakai
 - PHP 5.x
 - CodeIgniter 3.0-stable
 - mysqli
-
-# rilis
-v1.0 - 21 April 2015
