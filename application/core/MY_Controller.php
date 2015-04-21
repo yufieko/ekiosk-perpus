@@ -15,6 +15,16 @@ class MY_Controller extends CI_Controller {
 			redirect('login');
 		}
 
+		if(!$this->user_model->is_admin()) {
+			// di redirect ke bagian login
+			$newdata = array(
+                'perpus_pesan_error' => "Anda tidak punya hak untuk mengakses: " . $this->router->class . "",
+                'perpus_urlke' => current_url()
+            );
+            $this->session->set_userdata($newdata);
+			redirect('login');
+		}
+
 		// generate menu list
 		// $datah['menu'] = $this->user_model->get_menu($this->user_model->get_roleid());
 	}

@@ -8,10 +8,10 @@
 
 html {
 	background: url('../img/library.jpg') no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
 body {
@@ -28,16 +28,54 @@ body {
 	background: #fff;
 	box-shadow: 0 0 50px rgba(0,0,0,0.2);
 	padding: 0px;
+	-webkit-transition: -webkit-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+	-moz-transition: -moz-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+	-o-transition: -o-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+	transition: transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
 }
 
 .ekios-base {
 	position: absolute;
 	padding: 15px 100px 15px 15px;
 	margin: 50px;
-	background: #f78e56;
+	/*background: #f78e56;*/
 	color: #fff;
-	font-size: 100px;
+	font-size: 90px;
 	line-height: 110px;
+	background: rgba(1,1,1,0.3);
+	-webkit-transition: -webkit-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+	-moz-transition: -moz-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+	-o-transition: -o-transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+	transition: transform 0.3s cubic-bezier(0.32, 1.25, 0.375, 1.15);
+}
+
+.ekios-base p {
+	margin: 0;
+}
+
+.ekios-base:after {
+	content: "";
+	position: absolute;
+	background: url('../img/gridtile.png') repeat;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: -1!important;
+}
+
+.sidebar-collapse .content {
+    -webkit-transform: translate(530px, 0);
+    -ms-transform: translate(530px, 0);
+    -o-transform: translate(530px, 0);
+    transform: translate(530px, 0);
+}
+
+.sidebar-collapse .ekios-base {
+    -webkit-transform: translate(0, -530px);
+    -ms-transform: translate(0, -530px);
+    -o-transform: translate(0, -530px);
+    transform: translate(0, -530px);
 }
 
 .subtitle {
@@ -45,7 +83,7 @@ body {
 }
 
 .header {
-	margin-top: 50px;
+	/*margin-top: 50px;*/
 	background: #0072bc;
 	padding: 15px;
 	min-height: 100px;
@@ -66,14 +104,20 @@ body {
 	border-top: none;
 	border-left: none;
 	border-right: none;
-	margin: 20px;
+	margin: 15px 20px;
 	width: 90%;
 }
 
 .btn-absolute {
 	position: absolute;
+	right: 90px;
+	top: 250px;
+}
+
+.btn-login {
+	position: absolute;
 	right: 30px;
-	top: 300px;
+	top: 250px;
 }
 
 .btn-input {
