@@ -7,7 +7,7 @@ class Login extends CI_Controller {
 	}
 	
 	public function index() {
-		if(!$this->user_model->is_logged_in()){
+		if(!$this->user_model->is_logged_in() || !$this->user_model->is_admin()){
             if($this->session->userdata('perpus_pesan_error')) {
                 $data['error'] = $this->session->userdata('perpus_pesan_error');
                 $this->session->unset_userdata('perpus_pesan_error');
@@ -68,6 +68,35 @@ class Login extends CI_Controller {
         	// $this->load->view('Backend/daftar_view');
         }
 	}
+
+    public function dologinajax() {
+        $this->load->library('form_validation');
+        // mengambil input dari form daftar dan menetapkan rule
+        $this->form_validation->set_rules('l_username', 'Username','trim|required|strip_tags');
+        $this->form_validation->set_rules('l_password', 'Password','trim|required|strip_tags');
+        
+        if ($this->form_validation->run() == TRUE) {
+            //Jika sukses
+            $username = addslashes($this->input->post('l_username', TRUE));
+            $password = addslashes($this->input->post('l_password', TRUE));
+            
+            $flag = $this->user_model->login($username, $password, FALSE);
+
+            if(!$flag) {
+                $status['pesan'] = $this->user_model->error_messages();
+                $status['status'] = 0;
+            } else {
+                $status['pesan'] = "Anda berhasil login, tunggu sebentar";
+                $status['status'] = 1;
+            }
+
+        } else {
+            $status['pesan'] = validation_errors();
+            $status['status'] = 0;
+        }
+
+        echo json_encode($status);
+    }
 
     public function dolupa() {
         $this->load->library('form_validation');
