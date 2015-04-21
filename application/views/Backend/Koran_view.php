@@ -207,12 +207,7 @@
             <div class="box-body">
               <div class="row">
                 <div class="col-md-12">
-                  <p>Men-download Koran </p>
-                  <!-- Loading (remove the following to stop the loading)-->
-                  <div class="overlay">
-                    <i class="fa fa-refresh fa-spin"></i>
-                  </div>
-                  <!-- end loading -->
+                  <p>Men-download Koran   &nbsp;<i class="fa fa-refresh fa-spin"></i></p>
                 </div>
               </div>
             </div>

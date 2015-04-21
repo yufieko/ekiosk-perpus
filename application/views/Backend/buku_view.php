@@ -275,7 +275,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-            <button id="btn-simpan-buku" type="button" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+            <button id="btn-simpan-buku" type="button" class="btn btn-primary" data-loading-text="Loading..."><i class="fa fa-save"></i> Simpan</button>
           </div>
         </div>
         <!-- Loading (remove the following to stop the loading)-->
@@ -314,7 +314,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-            <button id="btn-simpan-jenis" type="button" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+            <button id="btn-simpan-jenis" type="button" class="btn btn-primary" data-loading-text="Loading..."><i class="fa fa-save"></i> Simpan</button>
           </div>
         </div>
       </div>
@@ -348,7 +348,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-            <button id="btn-simpan-koleksi" type="button" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+            <button id="btn-simpan-koleksi" type="button" class="btn btn-primary" data-loading-text="Loading..."><i class="fa fa-save"></i> Simpan</button>
           </div>
         </div>
       </div>
@@ -467,7 +467,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-            <button id="btn-edit-buku" type="button" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+            <button id="btn-edit-buku" type="button" class="btn btn-primary" data-loading-text="Loading..."><i class="fa fa-save"></i> Simpan</button>
           </div>
         </div>
       </div>
@@ -502,7 +502,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-            <button id="btn-edit-jenis" type="button" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+            <button id="btn-edit-jenis" type="button" class="btn btn-primary" data-loading-text="Loading..."><i class="fa fa-save"></i> Simpan</button>
           </div>
         </div>
       </div>
@@ -537,7 +537,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-            <button id="btn-edit-koleksi" type="button" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+            <button id="btn-edit-koleksi" type="button" class="btn btn-primary" data-loading-text="Loading..."><i class="fa fa-save"></i> Simpan</button>
           </div>
         </div>
       </div>
@@ -573,7 +573,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-            <button id="btn-hapus-buku" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Iya, Hapus</button>
+            <button id="btn-hapus-buku" type="button" class="btn btn-primary" data-loading-text="Loading..."><i class="fa fa-check"></i> Iya, Hapus</button>
           </div>
         </div>
       </div>
@@ -608,7 +608,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-            <button id="btn-hapus-jenis" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Iya, Hapus</button>
+            <button id="btn-hapus-jenis" type="button" class="btn btn-primary" data-loading-text="Loading..."><i class="fa fa-check"></i> Iya, Hapus</button>
           </div>
         </div>
       </div>
@@ -643,7 +643,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-            <button id="btn-hapus-koleksi" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Iya, Hapus</button>
+            <button id="btn-hapus-koleksi" type="button" class="btn btn-primary" data-loading-text="Loading..."><i class="fa fa-check"></i> Iya, Hapus</button>
           </div>
         </div>
       </div>

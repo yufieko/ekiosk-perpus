@@ -91,6 +91,14 @@
             //alert(child);
             $(parent).addClass("active");
             $(child).addClass("active");
+
+            // $(document).bind("ajaxSend", function() {
+            //     $("#spinner").show();
+            // }).bind("ajaxStop", function() {
+            //     setTimeout(function(){ $("#spinner").hide(); }, 2000);
+            // }).bind("ajaxError", function() {
+            //     setTimeout(function(){ $("#spinner").hide(); }, 2000);
+            // });
         });
     </script>
 
@@ -102,6 +110,12 @@
     <![endif]-->
   </head>
   <body class="skin-black fixed">
+    <div id="spinner" style="position:fixed; background: rgba(255,255,255,0.7);width: 100%;height: 100%;z-index: 999999;display: none;">
+    <!-- <div id="spinner" style="position: fixed; bottom: 0; right: 0; background: white; border-radius: 5px 0px 0px 5px; padding: 10px 15px; font-size: 16px; z-index: 999999; display: none"> -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+        <i class="fa fa-refresh fa-spin" style="position: absolute; top: 50%; left: 50%; margin-left: -15px; margin-top: -15px; color: #000; font-size: 70px;"></i>
+        </div>
+    </div>
     <div class="wrapper">
 
       <header class="main-header">
