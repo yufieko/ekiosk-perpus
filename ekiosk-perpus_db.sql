@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2015 at 06:37 AM
+-- Generation Time: May 05, 2015 at 05:01 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `ekiosk-perpus_db`
 --
+CREATE DATABASE IF NOT EXISTS `ekiosk-perpus_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `ekiosk-perpus_db`;
 
 -- --------------------------------------------------------
 
@@ -47,14 +49,18 @@ CREATE TABLE IF NOT EXISTS `tb_berkas` (
   `berkas_pesan` varchar(100) DEFAULT NULL,
   `berkas_waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `berkas_status` smallint(6) DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_berkas`
 --
 
 INSERT INTO `tb_berkas` (`berkas_id`, `user_id`, `berkas_download`, `berkas_nama`, `berkas_pesan`, `berkas_waktu`, `berkas_status`) VALUES
-(2, 3, 10, 'jawapos20150313.pdf', 'jawapos20150313', '2015-04-20 10:23:19', 1);
+(2, 3, 10, 'jawapos20150313.pdf', 'jawapos20150313', '2015-04-20 10:23:19', 1),
+(3, 3, 0, 'jawapos20150314.pdf', 'jawapos20150314', '2015-05-05 02:54:24', 0),
+(4, 3, 0, 'jawapos20150315.pdf', 'jawapos20150315', '2015-05-05 02:54:40', 1),
+(5, 3, 0, 'jawapos20150316.pdf', 'jawapos20150316', '2015-05-05 02:55:00', 1),
+(6, 3, 0, 'jawapos20150317.pdf', 'jawapos20150317', '2015-05-05 02:55:24', 1);
 
 -- --------------------------------------------------------
 
@@ -89,7 +95,7 @@ INSERT INTO `tb_buku` (`buku_id`, `buku_judul`, `buku_penulis`, `jenis_id`, `kol
 (3, 'Fundamentals Of Electric Circuit Fourth Edition', 'Charles K. Alexander and Matthew N.O. Sadiku', 18, 6, '2001', '2002-06-12 00:00:00', 'L.S30', '-', 'a', 'no_book_image.gif', 4, 2, 1),
 (6, 'Materials and Process In Manufacturing', 'J T. Black, Ronald A. Kohser', 8, 6, '2000', '0000-00-00 00:00:00', 'L.S30', '-', 'A', 'no_book_image.gif', 2, 0, 1),
 (7, 'Mechanics Of Materials ', 'Ferdinand P. Beer, E. Russel Johnstan,Jr', 8, 6, '2003', '2004-10-27 00:00:00', 'L.S30', '-', 'A', 'no_book_image.gif', 3, 2, 1),
-(8, 'Thermodynamics an Engineering Approach', 'Yunus A. Cengel, Michael A. Boles', 8, 6, '2010', '2011-05-20 00:00:00', 'L.S30', '-', 'A', 'no_book_image.gif', 4, 0, 1),
+(8, 'Thermodynamics an Engineering Approach', 'Yunus A. Cengel, Michael A. Boles', 8, 6, '2010', '2011-05-20 00:00:00', 'L.S30', '-', 'A', 'no_book_image.gif', 4, 4, 0),
 (9, 'Kamus Inggis-Indonesia', 'John M. Echols, Hassan Shadily', 6, 6, '2000', '2000-04-21 00:00:00', 'L.S30', '-', 'A', 'no_book_image.gif', 5, 0, 1),
 (10, 'Terjemahan Alfiyyah', 'Syarah Ibnu ‘Aqikl', 6, 6, '2012', '2012-08-09 00:00:00', 'L.S30', '-', 'A', 'no_book_image.gif', 3, 2, 1),
 (11, 'Testing Second Language Speaking', 'Glenn Fulcher', 6, 6, '2003', '2004-12-03 00:00:00', 'L.S30', '-', 'A', 'no_book_image.gif', 3, 0, 1),
@@ -258,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `tb_log` (
   `log_isi` text,
   `log_dibuat` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `log_status` smallint(6) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_log`
@@ -271,14 +277,21 @@ INSERT INTO `tb_log` (`log_id`, `menu_id`, `user_id`, `log_isi`, `log_dibuat`, `
 (9, 38, 3, 'User yufieko mengubah data buku ''Biografi Imam Syafi''i''', '2015-04-20 07:33:22', 1),
 (11, 36, 3, 'User yufieko menandai semua Log telah dibaca', '2015-04-20 07:36:12', 1),
 (12, 36, 3, 'User yufieko menandai semua Log telah dibaca', '2015-04-20 07:37:13', 1),
-(13, 36, 3, 'User yufieko menandai semua Log telah dibaca', '2015-04-20 07:37:13', 0),
-(14, 39, 3, 'User yufieko menambahkan koran baru ''jawapos20140201''', '2015-04-20 08:56:32', 0),
-(15, 39, 3, 'User yufieko mengubah data koran ''jawapos20140201-asdasd''', '2015-04-20 09:58:17', 0),
-(16, 39, 3, 'User yufieko mengubah data koran ''jawapos20140201''', '2015-04-20 09:58:43', 0),
-(17, 39, 3, 'User yufieko menghapus data koran ''jawapos20140201''', '2015-04-20 10:11:18', 0),
-(18, 39, 3, 'User yufieko menambahkan koran baru ''jawapos20150313''', '2015-04-20 10:23:19', 0),
-(19, 39, 3, 'User yufieko mengubah data koran ''jawapos20150313''', '2015-04-20 10:23:29', 0),
-(20, 38, 3, 'User yufieko menghapus data buku ''Aku anak sehat''', '2015-04-21 03:41:05', 0);
+(13, 36, 3, 'User yufieko menandai semua Log telah dibaca', '2015-05-05 02:44:59', 1),
+(14, 39, 3, 'User yufieko menambahkan koran baru ''jawapos20140201''', '2015-05-05 02:44:59', 1),
+(15, 39, 3, 'User yufieko mengubah data koran ''jawapos20140201-asdasd''', '2015-05-05 02:44:59', 1),
+(16, 39, 3, 'User yufieko mengubah data koran ''jawapos20140201''', '2015-05-05 02:44:59', 1),
+(17, 39, 3, 'User yufieko menghapus data koran ''jawapos20140201''', '2015-05-05 02:44:59', 1),
+(18, 39, 3, 'User yufieko menambahkan koran baru ''jawapos20150313''', '2015-05-05 02:44:59', 1),
+(19, 39, 3, 'User yufieko mengubah data koran ''jawapos20150313''', '2015-05-05 02:44:59', 1),
+(20, 38, 3, 'User yufieko menghapus data buku ''Aku anak sehat''', '2015-05-05 02:44:59', 1),
+(21, 38, 3, 'User yufieko mengubah data buku ''Thermodynamics an Engineering Approach''', '2015-05-05 02:44:59', 1),
+(22, 36, 3, 'User yufieko menandai semua Log telah dibaca', '2015-05-05 02:44:59', 0),
+(23, 39, 3, 'User yufieko menambahkan koran baru ''jawapos20150314''', '2015-05-05 02:54:24', 0),
+(24, 39, 3, 'User yufieko menambahkan koran baru ''jawapos20150315''', '2015-05-05 02:54:40', 0),
+(25, 39, 3, 'User yufieko menambahkan koran baru ''jawapos20150316''', '2015-05-05 02:55:00', 0),
+(26, 39, 3, 'User yufieko menambahkan koran baru ''jawapos20150317''', '2015-05-05 02:55:25', 0),
+(27, 39, 3, 'User yufieko mengubah data koran ''jawapos20150314''', '2015-05-05 02:55:42', 0);
 
 -- --------------------------------------------------------
 
@@ -540,7 +553,7 @@ ALTER TABLE `tb_web`
 -- AUTO_INCREMENT for table `tb_berkas`
 --
 ALTER TABLE `tb_berkas`
-MODIFY `berkas_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `berkas_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `tb_buku`
 --
@@ -565,7 +578,7 @@ MODIFY `koleksi_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 -- AUTO_INCREMENT for table `tb_log`
 --
 ALTER TABLE `tb_log`
-MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `tb_menu`
 --
