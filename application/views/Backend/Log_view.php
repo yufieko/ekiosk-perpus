@@ -208,7 +208,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-            <button id="btn-hapus-log" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Iya, Hapus Semua</button>
+            <button id="btn-hapusemua-log" type="button" class="btn btn-primary"><i class="fa fa-check"></i> Iya, Hapus Semua</button>
           </div>
         </div>
       </div>
@@ -235,7 +235,7 @@
         });
 
         $('#btn-hapus-semua').click(function(){
-            $('#modal-hapusemua-jenis').modal('show');
+            $('#modal-hapusemua-log').modal('show');
         });
 
         $('#modal-hapus-log').on('show.bs.modal', function (e) {

@@ -1449,14 +1449,16 @@ class User_model extends CI_Model {
     				    $li_parent = 'class="treeview"';
     					$menu_child = '<i class="fa fa-angle-left pull-right"></i><ul class="treeview-menu">';
     					foreach ($result_child->result() as $child){
-    						$menu_child = $menu_child.'<li id="child-'.$child->menu_akses.'"><a href="'.site_url()."dashboard".$child->menu_url.'"><i class="'.$child->menu_icon.'"></i> '.$child->menu_nama.'</a></li>';
+                            $urlchild = "dashboard".$child->menu_url;
+    						$menu_child = $menu_child.'<li id="child-'.$child->menu_akses.'"><a href="'.site_url($urlchild).'"><i class="'.$child->menu_icon.'"></i> '.$child->menu_nama.'</a></li>';
     					}
     					$menu_child = $menu_child.'</ul>';
     				}
 
+                    $urlparent = "dashboard".$parent->menu_url;
     				$menu = $menu.'
                                 <li '.$li_parent.' id="parent-'.$parent->menu_akses.'">
-                                    <a href="'.site_url()."dashboard".$parent->menu_url.'">
+                                    <a href="'.site_url($urlparent).'">
                                         <i class="'.$parent->menu_icon.'"></i> <span>'.$parent->menu_nama.'</span>
                                         '.$menu_child.'
                                     </a>

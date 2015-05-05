@@ -37,12 +37,12 @@ class Home extends CI_Controller {
 	public function getkoran() {
         $this->load->library('Datatables');
 
-        $select = "b.berkas_id,b.berkas_pesan,b.berkas_waktu,"
-        		. "REPLACE(REPLACE(`b`.`berkas_status`,'0','Draft'),'1','Publish') AS Bstatus";
+        $select = "b.berkas_id,b.berkas_pesan,b.berkas_waktu";
         $opsi = ' <button class="btn btn-xs btn-flat btn-success" data-toggle="modal" data-target="#modal-download-koran" data-id="'.utf8_encode('$1').'" data-title="Koran" title="Download Data"><i class="fa fa-download"></i> Download</button>';
         $this->datatables->select($select)
         	->add_column('Bopsi', $opsi, 'berkas_id')
         	->from('tb_berkas b')
+            ->where('berkas_status',1)
             ->unset_column('Bopsi');
  
         echo $this->datatables->generate();
